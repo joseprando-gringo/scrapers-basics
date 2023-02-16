@@ -1,0 +1,17 @@
+### POST FJQ8705
+POST http://localhost:3000/sefaz
+content-type: application/json
+
+{
+  "placa": "FJQ8705",
+  "renavam": "1076858306"
+}
+
+### POST DIA4391
+POST http://localhost:3000/sefaz
+content-type: application/json
+
+{
+  "placa": "DIA4391",
+  "renavam": "00781076692"
+}

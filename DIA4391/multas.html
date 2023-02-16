@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Consulta de débitos do veículo
+</title><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="author" content="DTI" /><meta name="description" content="Consulta Online de Débitos Vinculados a Veículos da Secretaria da Fazenda e Planejamento do Estado de São Paulo" /><meta name="keywords" content="secretaria, fazenda, SEFAZ, IPVA, contribuinte, licenciamento, governo, São Paulo, taxas, multas" /><meta name="copyright" /><meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+  <!-- Estilos -->
+  <link rel="stylesheet" type="text/css" href="../Styles/fazenda.css" /><link rel="stylesheet" type="text/css" href="../Styles/cadesp.css" /><link rel="stylesheet" type="text/css" href="../Styles/estilos.css" /><link rel="stylesheet" type="text/css" href="../Styles/print.css" media="print" />
+  <style type="text/css">  .adjustedZIndex {   z-index: 1;   }   
+      .style1
+      {
+          width: 200px;
+      }
+  </style> <!-- este ajuste resolve o problema de compatibilidade do menu do asp.net com o ie8 -->
+
+  <!-- Scripts -->
+  <script type="text/javascript">
+      var appInsights = window.appInsights || function (config) {
+          function i(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = "AuthenticatedUserContext", h = "start", c = "stop", l = "Track", a = l + "Event", v = l + "Page", y = u.createElement(o), r, f; y.src = config.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js"; u.getElementsByTagName(o)[0].parentNode.appendChild(y); try { t.cookie = u.cookie } catch (p) { } for (t.queue = [], t.version = "1.0", r = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; r.length;) i("track" + r.pop()); return i("set" + s), i("clear" + s), i(h + a), i(c + a), i(h + v), i(c + v), i("flush"), config.disableExceptionTracking || (r = "onerror", i("_" + r), f = e[r], e[r] = function (config, i, u, e, o) { var s = f && f(config, i, u, e, o); return s !== !0 && t["_" + r](config, i, u, e, o), s }), t
+      }({
+          instrumentationKey: "7af02e70-c5b3-4dd5-84ca-f37e0ec422d6"
+      });
+
+      window.appInsights = appInsights;
+      appInsights.trackPageView(null, null, { urlReferrer: document.referrer });
+  </script>
+  <script type="text/javascript">
+      function myFunction() {
+        var hoje = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+         document.getElementById("copyright").setAttribute("content", "Copyright" + yyyy + "Secretaria da Fazenda do Estado de São Paulo - Todos os direitos reservados");
+    }
+  </script>
+  <script type="text/javascript" language="javascript" src="/IPVANET_Consulta/Pages/Scripts/fazenda.js"></script>
+  <script type="text/javascript" language="javascript" src="/IPVANET_Consulta/Pages/Scripts/CadespUtil.js"></script>
+</head>
+
+<body class="body1" style="border-width: 0px">
+  <form method="post" action="./AITdetalhe.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEzMTQxNTU3NTUPZBYCZg9kFgQCAQ9kFgICDA8VAiovSVBWQU5FVF9Db25zdWx0YS9QYWdlcy9TY3JpcHRzL2ZhemVuZGEuanMtL0lQVkFORVRfQ29uc3VsdGEvUGFnZXMvU2NyaXB0cy9DYWRlc3BVdGlsLmpzZAIDD2QWBgIFD2QWAgIDDw8WAh4EVGV4dAUiRGF0YSBkYSBDb25zdWx0YTogMTYvMDIvMjAyMyAxNDoyN2RkAgsPZBYCAgEPZBYeAgsPDxYCHwAFCzAwNzgxMDc2NjkyZGQCDw8PFgIfAAUKUEFTU0FHRUlST2RkAhMPDxYCHwAFB0RJQTQzOTFkZAIXDw8WAh8ABQpQQVJUSUNVTEFSZGQCGw8PFgIfAAUZR00vQVNUUkEgSEFUQ0ggICAgICAgICAgIGRkAh8PDxYCHwAFCUFVVE9NT1ZFTGRkAiMPDxYCHwAFBzE1NDUxMjBkZAInDw8WAh8ABQE1ZGQCKw8PFgIfAAUEMjAwMmRkAi8PDxYCHwAFC0lORVhJU1RFTlRFZGQCMw8PFgIfAAUVMTAwLTQgICAgICBTw6NvIFBhdWxvZGQCNw8PFgIfAAUEMjAxN2RkAjsPDxYCHwAFCEdBU09MSU5BZGQCQQ8WAh4HVmlzaWJsZWgWAmYPZBYEAgMPDxYCHwBlZGQCBw8PFgIfAAUKMDEvMDEvMDAwMWRkAk8PDxYCHwAFCDIuNTE4LDEwZGQCDQ8PFggfAAU4PFNNQUxMPlZlcnPDo28gPFU+ZW0gZGVzZW52b2x2aW1lbnRvPC9VPjogMS4wMS4yPC9TTUFMTD4eCUZvcmVDb2xvcgqNAR4JRm9udF9TaXplKCoiU3lzdGVtLldlYi5VSS5XZWJDb250cm9scy5Gb250VW5pdAVTbWFsbB4EXyFTQgKECGRkZLEUf94LWpB00IKPqjR8+s58k/J1jbNZbKrm52YdWYBk" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/IPVANET_Consulta/WebResource.axd?d=9ZBMOKx_PZkL6TmsTkKnqH2rBG4065ELQsgCwEKK_QomwmUPs197odDfOPcx9X-GTW0CEGef1shQZ7uRGGH77SU9KEvnqe6rttRXeZyganM1&amp;t=637814552020000000" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var __cultureInfo = {"name":"pt-BR","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":",","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":".","CurrencySymbol":"R$","NaNSymbol":"NaN (Não é um número)","CurrencyNegativePattern":9,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-Infinito","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":",","NumberGroupSeparator":".","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"+Infinito","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":",","PercentGroupSeparator":".","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"","Calendar":{"MinSupportedDateTime":"\/Date(-62135589600000)\/","MaxSupportedDateTime":"\/Date(253402300799999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"/","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss","LongDatePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d\u0027 de \u0027MMMM","PMDesignator":"","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"dd/MM/yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM\u0027 de \u0027yyyy","AbbreviatedDayNames":["dom","seg","ter","qua","qui","sex","sáb"],"ShortestDayNames":["D","S","T","Q","Q","S","S"],"DayNames":["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],"AbbreviatedMonthNames":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""],"MonthNames":["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],"IsReadOnly":true,"NativeCalendarName":"Calendário gregoriano","AbbreviatedMonthGenitiveNames":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""],"MonthGenitiveNames":["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""]},"eras":[1,"d.C.",null,0]};//]]>
+</script>
+
+<script src="/IPVANET_Consulta/ScriptResource.axd?d=nVK2rWRBOqupkKtAGjvnuUmcAINXqP6_vCTep33hHt01-gg9YGE2rSbeq7u-33v45AX9OqXFr_dP7IurmolCV2oOOEch0h4hRgUVFWjPI1V9-wDp4gzk7RbPm80JVU1uaAU1plsV56GdnwSod9yExuTYiXcVxj2eAjXDGvLdXFo1&amp;t=49337fe8" type="text/javascript"></script>
+<script src="/IPVANET_Consulta/ScriptResource.axd?d=400fQrLQez8QXl3DCTE1gjPtSJi7D72dSH3VezKkPhpQp_q4C50hcHlxz1psXYN_-eBuk3KOZJea0AFAIk9a0tQuXkUVsWhPPs65uQJUVsy7hk44MwKUxRRKb3w7Krof3Q9B4LMOVGW4u5J_mP8XS_0RIc1FnLEDfsmZs54NoUABUXSaXKXKVUvhAaNvNaWd0&amp;t=49337fe8" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="58D78317" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAOGvzeoQ14DGJQli4nAyRgK2dxFve9jlm1CfxpnGIHXQ4CWLqHKUDR1Ootfa91CEavehJzpgbClqS+L2zQ2ZYRlpfPejI7OYo3sL7OdrDblEA==" />
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'form1', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+    <!-- Cabe?alho -->
+    <div id="global" class="noPrint">
+      <table style="width: 100%; border-bottom: solid 1px #000000; padding: 0;" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width: 75%; text-align: left; vertical-align: top;">
+            <h1 id="logo">
+              <a href="http://www.fazenda.sp.gov.br" title="Secretaria da Fazenda do Estado de São Paulo">
+                Secretaria da Fazenda</a>
+            </h1>
+          </td>
+          <td style="width: 75%; text-align: right">
+            <img src="../Images/header_bg.jpg" alt="Estado de São Paulo" /></td>
+        </tr>
+      </table>
+    </div>
+    <!-- T?tulo da P?gina / Sistema -->
+    <table style="width: 100%; border: 0; border-bottom: solid 1px #000000;">
+      <tr style="height: 45px">
+        <td class="titulo_pagina" style="width: 100%; padding-left: 5px; padding-right: 5px">
+          <!-- T?tulo da p?gina parametrizado -->
+          
+    <table cellspacing="0" cellpadding="0" style="width: 100%">
+        <tr>
+            <td style="height: 20px; width: 750px">
+                <span id="tituloPaginaPlaceHolder_Label151" class="alinharEsquerda" style="font-size:Medium;font-weight:bold;">Detalhamento de Multas</span>
+            </td>
+            <td>
+                <span id="tituloPaginaPlaceHolder_txtDataConsulta" class="alinharDireita" style="display:inline-block;font-size:Small;width:436px;height: 10px; color: gray">Data da Consulta: 16/02/2023 14:27</span>
+            </td>
+        </tr>
+    </table>
+
+        </td>
+        <td class="titulo_sistema" style="width: 100%; padding-left: 5px; padding-right: 5px; text-align:right;">
+          <span id="nomeSistemaSpan"></span>
+        </td>
+      </tr>
+    </table>
+    <!-- Menu -->
+    <div id="menuSuperiorPanel" class="menuSuperior">
+	
+      
+
+    
+</div>
+    <table id="tableMenu" style="width:100%;">
+	<tr id="tableMenuRow1" class="cabecalhoMenu">
+		<td id="tableMenuRow1Cell1" class="cabecalhoBotoesMenu"><div id="botaoFecharPanel">
+			
+            <img src="../Images/Icones/botao_sair.gif" id="imgSairSistema" class="imgButton" alt="Fechar" onclick="javascript:SairSistema();" />
+          
+		</div></td>
+	</tr>
+</table>
+    <!-- Conte?do da P?gina -->
+    <table class="conteudoGeral">
+      <tr>
+        <td class="style1">
+            &nbsp;</td>
+        <td class="conteudoPrincipal" style="width: 100%; padding-left: 5px; padding-right: 5px">
+
+          
+    <table>
+        <tr>
+            <td style="width: 10%">
+            </td>
+            <td style="width: 100%">
+                <div id="conteudoPaginaPlaceHolder_Panel1" style="width:935px;">
+	
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="negrito" align="center" style="background-color: DarkRed">
+                                <span id="conteudoPaginaPlaceHolder_Label63" style="color:White;font-size:Small;font-weight:bold;">DÉBITOS DE MULTAS - OBSERVAÇÕES IMPORTANTES</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 20px" class="alinharJustificado, negrito">
+                                        <td class="alinharJustificado" style="font-size: Small">
+                                            Estão relacionadas até 15 (quinze) multas que incidem sobre o veículo.&nbsp;As demais, se houver, deverão ser pagas separadamente.
+                                        </td>
+	
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px" class="alinharJustificado, negrito">
+                            <td class=" alinharCentro" style="font-size: small">
+                                Esta pesquisa tem caráter apenas informativo.&nbsp;
+                                <span id="conteudoPaginaPlaceHolder_Label13" style="font-size:Small;font-weight:bold;text-decoration:underline;">Não</span>
+                                &nbsp;é válida como certidão
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label60" style="font-size:Small;font-weight:bold;">VEÍCULO</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_lblRenavam" style="font-weight:bold;">Renavam:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtRenavam">00781076692</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label1" style="font-weight:bold;">Espécie:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtEspecie">PASSAGEIRO</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label2" style="font-weight:bold;">Placa:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtPlaca">DIA4391</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label4" style="font-weight:bold;">Categoria:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtCategoria">PARTICULAR</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label3" style="font-weight:bold;">Marca / Modelo:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtMarcaModelo">GM/ASTRA HATCH           </span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label6" style="font-weight:bold;">Tipo:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtTipo">AUTOMOVEL</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label8" style="font-weight:bold;">Faixa do IPVA:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtFaixaIPVA">1545120</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label10" style="font-weight:bold;">Passageiros:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtPassageiros">5</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label5" style="font-weight:bold;">Ano de Fabricação:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoFabric">2002</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label9" style="font-weight:bold;">Carroceria:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtCarroceria">INEXISTENTE</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label12" style="font-weight:bold;">Município:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtMunicipio">100-4      São Paulo</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label14" style="font-weight:bold;">Último Licenciamento:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoUltLicen">2017</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label16" style="font-weight:bold;">Combustível:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtCombustivel">GASOLINA</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label18" style="font-weight:bold;"> </span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label19"> </span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label15" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label79" style="font-size:Small;font-weight:bold;">MULTAS</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="conteudoPaginaPlaceHolder_pnlMultasDet" style="width:100%;border: 1px solid gray">
+		
+                        <table id="conteudoPaginaPlaceHolder_tbMultasDet" class="loginTable" cellspacing="1" cellpadding="1" width="100%">
+			<tr id="conteudoPaginaPlaceHolder_trMultaCab">
+				<td style="height: 15px;" align="left">
+                                    <span id="conteudoPaginaPlaceHolder_Label84"> </span>
+                                    <span id="conteudoPaginaPlaceHolder_Label85"> </span>
+                                    <span id="conteudoPaginaPlaceHolder_Label86"> </span>
+                                    <span id="conteudoPaginaPlaceHolder_Label87"> </span>
+                                    <span id="conteudoPaginaPlaceHolder_Label88"> </span>
+                                    <span id="conteudoPaginaPlaceHolder_Label11"> </span>
+                                </td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar em Locais e Horarios nao Permitidos.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A5671959</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">10/01/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV SANTOS DUMONT (B/C), A MENO</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">164098371</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 147,23</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">14/09/2020 09:43:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A8174885</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">10/01/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV PR CASTELO BRANCO (CB/AS),</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">164100624</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 147,23</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">12/09/2020 00:09:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Trans. Veloc. Sup. a Maxima Permitida, Mais de 20% ate 50%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B1606759</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">10/01/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV CRUZEIRO DO SUL (CENTRO/BAI</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">164366054</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 220,84</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">20/09/2020 18:24:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B1601950</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">11/01/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV DO ESTADO (SANTANA/IPIRANGA</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">164408611</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 147,23</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">20/09/2020 13:41:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A9544546</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">18/04/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">RUA MARIA CANDIDA (B/C) NUMERO</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">173866292</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 143,95</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">12/11/2021 15:27:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Trans. Veloc. Sup. a Maxima Permitida, Mais de 20% ate 50%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B4129812</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">02/05/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV DO ESTADO (SANTANA/IPIRANGA</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">175094310</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 213,91</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">25/12/2021 05:18:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A9661435</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">02/05/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AVENIDA CRUZEIRO DO SUL (CENTR</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">175132794</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 142,61</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">25/12/2021 19:03:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Trans. Veloc. Sup. a Maxima Permitida, Mais de 20% ate 50%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B4062213</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">02/05/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV PROF ABRAAO DE MORAIS (IPIR</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">175150944</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 213,91</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">25/12/2021 05:28:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Avancar Sinal Vermelho do Semaforo ou de Parada Obrigatoria.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A1569983</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">02/05/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV IMIRIM (VL N CACHOEIRINHA/S</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">175281289</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 321,55</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">09/01/2022 11:55:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A9954090</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">11/08/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV IMIRIM (SANTANA/VL N CACHOE</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">178055143</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 138,42</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">22/04/2022 14:12:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5A9985538</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">22/08/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV PR CASTELO BRANCO (CB/AS),</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">178334174</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 138,42</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">03/05/2022 12:04:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Estacionar em Local/Horario Proibidos pela Sinalizacao.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5C2078137</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">08/09/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">RUA SALVADOR BICUDO</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">178772689</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 137,03</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">20/05/2022 07:57:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B1048162</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">12/09/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AVENIDA GENERAL ATALIBA LEONEL</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">178838418</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 137,03</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">23/05/2022 11:12:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B1213677</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">03/11/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AV LUIZ DUMONT VILLARES (C/B),</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">180225035</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 134,37</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">16/07/2022 21:05:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Infração: </span></td>
+				<td><span style="display:inline-block;height:15px;">Transitar velocidade superior a maxima permitida em ate 20%.</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Município: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">São Paulo</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº do A.I.T.: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">5B1231086</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Vencimento: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">07/11/2022</span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Local: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">AVENIDA CRUZEIRO DO SUL (CENTR</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Nº da Guia: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">180369043</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Valor: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:100px;">R$ 134,37</span></td>
+			</tr>
+			<tr style="border-bottom:thin outset gray;">
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Data/Hora: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">21/07/2022 16:50:00</span></td>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;">Receita: </span></td>
+				<td><span class="alinharEsquerda" style="display:inline-block;height:15px;width:200px;">MUNICIPAL</span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+			</tr>
+			<tr>
+				<td><span class="alinharDireita" style="display:inline-block;height:15px;"> </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">   </span></td>
+				<td><span style="display:inline-block;height:15px;">    </span></td>
+			</tr>
+		</table>
+		
+                    
+	</div>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label109" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr class="negrito" align="center" style="background-color: Gray; height: 20px">
+                            <td style="height: 15px; width: 250px" align="right">
+                                <span id="conteudoPaginaPlaceHolder_Label54" style="font-size:Small;">Total de Débitos-MULTAS</span>
+                            </td>
+                            <td style="height: 15px; width: 850px" align="right">
+                                <span id="conteudoPaginaPlaceHolder_Label56" style="font-size:Small;">R$ </span>
+                            </td>
+                            <td style="height: 15px; width: 102px" align="right">
+                                <span id="conteudoPaginaPlaceHolder_txtValorTotalMultas" style="font-size:Small;">2.518,10</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="25px" align="right" width="450px">
+                                <input type="submit" name="ctl00$conteudoPaginaPlaceHolder$btn_Voltar" value="Voltar" id="conteudoPaginaPlaceHolder_btn_Voltar" style="width:100px;" />
+                            </td>
+                            <td height="25px" align="right" width="150px">
+                                &nbsp;
+                            </td>
+                            <td height="25px" align="left" width="450px">
+                                <input type="submit" name="ctl00$conteudoPaginaPlaceHolder$btn_Imprimir" value="Imprimir" id="conteudoPaginaPlaceHolder_btn_Imprimir" title="Clique aqui para gerar versão para impressão / PDF" style="width:100px;" />
+                            </td>
+                        </tr>
+                    </table>
+                
+</div>
+            </td>
+            <td style="width: 10%">
+            </td>
+        </tr>
+    </table>
+
+
+        </td>
+        <td class="margemDireitaConteudoGeral">
+          &nbsp;</td>
+      </tr>
+    </table>
+    <!--Vers?o-->
+    <div id="web_version" class="noPrint">
+        <span id="Versao" class="web_version_label" style="color:Red;font-size:Small;"><SMALL>Versão <U>em desenvolvimento</U>: 1.01.2</SMALL></span>
+    </div>
+    <!-- Rodap? -->
+
+    <div id="footer" style="width: 100%" class="noPrint">
+      <table style="width: 100%; padding: 0;" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width: 75%; text-align: center">
+          Secretaria da Fazenda e Planejamento do Estado de São Paulo - Av. Rangel Pestana,300 - São Paulo - SP - Cep 01017-911 - PABX (11)3243-3400
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </form>
+</body>
+</html>

@@ -1,0 +1,1526 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Consulta de débitos do veículo
+</title><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="author" content="DTI" /><meta name="description" content="Consulta Online de Débitos Vinculados a Veículos da Secretaria da Fazenda e Planejamento do Estado de São Paulo" /><meta name="keywords" content="secretaria, fazenda, SEFAZ, IPVA, contribuinte, licenciamento, governo, São Paulo, taxas, multas" /><meta name="copyright" /><meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+  <!-- Estilos -->
+  <link rel="stylesheet" type="text/css" href="../Styles/fazenda.css" /><link rel="stylesheet" type="text/css" href="../Styles/cadesp.css" /><link rel="stylesheet" type="text/css" href="../Styles/estilos.css" /><link rel="stylesheet" type="text/css" href="../Styles/print.css" media="print" />
+  <style type="text/css">  .adjustedZIndex {   z-index: 1;   }   
+      .style1
+      {
+          width: 200px;
+      }
+  </style> <!-- este ajuste resolve o problema de compatibilidade do menu do asp.net com o ie8 -->
+
+  <!-- Scripts -->
+  <script type="text/javascript">
+      var appInsights = window.appInsights || function (config) {
+          function i(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = "AuthenticatedUserContext", h = "start", c = "stop", l = "Track", a = l + "Event", v = l + "Page", y = u.createElement(o), r, f; y.src = config.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js"; u.getElementsByTagName(o)[0].parentNode.appendChild(y); try { t.cookie = u.cookie } catch (p) { } for (t.queue = [], t.version = "1.0", r = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; r.length;) i("track" + r.pop()); return i("set" + s), i("clear" + s), i(h + a), i(c + a), i(h + v), i(c + v), i("flush"), config.disableExceptionTracking || (r = "onerror", i("_" + r), f = e[r], e[r] = function (config, i, u, e, o) { var s = f && f(config, i, u, e, o); return s !== !0 && t["_" + r](config, i, u, e, o), s }), t
+      }({
+          instrumentationKey: "7af02e70-c5b3-4dd5-84ca-f37e0ec422d6"
+      });
+
+      window.appInsights = appInsights;
+      appInsights.trackPageView(null, null, { urlReferrer: document.referrer });
+  </script>
+  <script type="text/javascript">
+      function myFunction() {
+        var hoje = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+         document.getElementById("copyright").setAttribute("content", "Copyright" + yyyy + "Secretaria da Fazenda do Estado de São Paulo - Todos os direitos reservados");
+    }
+  </script>
+  <script type="text/javascript" language="javascript" src="/IPVANET_Consulta/Pages/Scripts/fazenda.js"></script>
+  <script type="text/javascript" language="javascript" src="/IPVANET_Consulta/Pages/Scripts/CadespUtil.js"></script>
+</head>
+
+<body class="body1" style="border-width: 0px">
+  <form method="post" action="./Aviso.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJNDY5MjI3MDYwD2QWAmYPZBYEAgEPZBYCAgwPFQIqL0lQVkFORVRfQ29uc3VsdGEvUGFnZXMvU2NyaXB0cy9mYXplbmRhLmpzLS9JUFZBTkVUX0NvbnN1bHRhL1BhZ2VzL1NjcmlwdHMvQ2FkZXNwVXRpbC5qc2QCAw9kFgYCBQ9kFgICAw8PFgIeBFRleHQFIkRhdGEgZGEgQ29uc3VsdGE6IDE2LzAyLzIwMjMgMTA6NTlkZAILD2QWAgIBD2QWSgIbDw8WAh8ABQswMTA3Njg1ODMwNmRkAh8PDxYCHwAFClBBU1NBR0VJUk9kZAIjDw8WAh8ABQdGSlE4NzA1ZGQCJw8PFgIfAAUKUEFSVElDVUxBUmRkAisPDxYCHwAFGUhPTkRBL0NJVklDIExYUiAgICAgICAgICBkZAIvDw8WAh8ABQlBVVRPTU9WRUxkZAIzDw8WAh8ABQcxNTM3MzcwZGQCNw8PFgIfAAUBNWRkAjsPDxYCHwAFBDIwMTVkZAI/Dw8WAh8ABQtJTkVYSVNURU5URWRkAkMPDxYCHwAFEzI0NC02ICAgICAgQ2FtcGluYXNkZAJHDw8WAh8ABQQyMDIyZGQCSw8PFgIfAAUPQUxDT09ML0dBU09MSU5BZGQCUQ8WAh4HVmlzaWJsZWgWAmYPZBYEAgMPDxYCHwBlZGQCBw8PFgIfAAUKMDEvMDEvMDAwMWRkAlsPDxYCHwAFBDIwMjNkZAJdD2QWAgIDD2QWAgIBDw8WAh8ABQk3MS4xOTcsMDBkZAJlDw8WAh8ABQM0LDBkZAJpD2QWAgIDD2QWAgIBDw8WAh8ABQgyLjg0Nyw4OGRkAnEPDxYCHwBlZGQCcw8PFgIfAAUDLS0tZGQCdQ9kFgICAw9kFgICAQ8PFgIfAAUIMi44NDcsODhkZAJ/Dw8WAh8ABQgxLjEzOSwxNGRkAoEBD2QWBAICD2QWAgIDDw8WAh8AZWRkAgMPZBYCAgEPDxYCHwAFAy0tLWRkAoMBD2QWAgIDD2QWAgIBDw8WAh8ABQgxLjcwOCw3NGRkAosBDw8WAh8ABQNSJCBkZAKNAQ8PFgIfAAUEMCwwM2RkAo8BD2QWAgIDD2QWAgIBDw8WAh8ABQgxLjcwOCw3N2RkApMBD2QWAmYPZBYOAgUPFgIeBXN0eWxlBTtib3JkZXI6MXB4IHNvbGlkIGdyYXk7YmFja2dyb3VuZC1jb2xvcjpTaWx2ZXI7ZGlzcGxheTpub25lO2QCBw9kFgZmD2QWAgIBDw8WAh8ABRjDgCB2aXN0YSBjb20gYWNyw6lzY2ltb3NkZAIBD2QWAgIBDw8WAh8ABQoxNy8wMi8yMDIzZGQCBA9kFgICAQ8PFgIfAAUIMS43MDgsNzFkZAIJDxYCHwIFO2JvcmRlcjoxcHggc29saWQgZ3JheTtiYWNrZ3JvdW5kLWNvbG9yOlNpbHZlcjtkaXNwbGF5Om5vbmU7ZAILDxYCHwIFI2JvcmRlcjoxcHggc29saWQgZ3JheTtkaXNwbGF5Om5vbmU7ZAIND2QWBAIBD2QWAgIBDw8WAh8ABQoxNy8wMy8yMDIzZGQCBA9kFgICAQ8PFgIfAAUGNTY5LDU3ZGQCDw8WAh8CBSNib3JkZXI6MXB4IHNvbGlkIGdyYXk7ZGlzcGxheTpub25lO2QCEQ8WAh8CBTtib3JkZXI6MXB4IHNvbGlkIGdyYXk7YmFja2dyb3VuZC1jb2xvcjpTaWx2ZXI7ZGlzcGxheTpub25lO2QClQEPZBYCZg9kFgQCAQ9kFgJmD2QWAmYPZBYCAgEPDxYCHwAFG1BBR0FNRU5UT1MgRUZFVFVBRE9TIC0gMjAyM2RkAgMPFgIfAWcWAmYPZBYCZg9kFgICAQ9kFgwCAQ9kFgICAQ8PFgIfAAUPPGI+MS4xMzksMTQ8L2I+ZGQCAg9kFgICAQ8PFgIfAAUPPGI+MS4xMzksMTQ8L2I+ZGQCAw9kFgICAQ8PFgIfAAULPGI+MCwwMDwvYj5kZAIED2QWAgIBDw8WAh8ABQs8Yj4wLDAwPC9iPmRkAgUPZBYCAgEPDxYCHwAFCzxiPjAsMDA8L2I+ZGQCBg9kFgICAQ8PFgIfAAULPGI+MCwwMDwvYj5kZAKbAQ9kFgICAQ9kFgRmD2QWAgIBDw8WAh8ABQtOQURBIENPTlNUQWRkAgMPZBYCAgEPDxYCHwFoZGQCpQEPZBYCZg9kFgICAQ8PFgIfAAULTkFEQSBDT05TVEFkZAKtAQ9kFgYCAQ9kFghmD2QWAgIBDw8WAh8ABQtOQURBIENPTlNUQRYCHwIFD0ZvbnQtQm9sZDp0cnVlO2QCAg9kFgICAQ8PFgIfAWhkZAIDD2QWBAIBDw8WAh8BaGRkAgMPDxYCHwBlZGQCBA9kFgICAQ8PFgIfAWhkZAICDxYCHwIFI2JvcmRlcjoxcHggc29saWQgZ3JheTtkaXNwbGF5Om5vbmU7FgICAg9kFgICAQ8PFgIfAWhkZAIDDxYCHwIFI2JvcmRlcjoxcHggc29saWQgZ3JheTtkaXNwbGF5Om5vbmU7FgICAg9kFgICAQ8PFgIfAWhkZAK1AQ9kFgRmD2QWAmYPZBYCAgEPDxYCHwAFEkxpY2VuY2lhbWVudG8gMjAyM2RkAgEPFgIfAgU8Ym9yZGVyOjFweCBzb2xpZCBncmF5O2JhY2tncm91bmQtY29sb3I6I2QzZDNkMztkaXNwbGF5Om5vbmU7ZAK7AQ9kFgJmD2QWAmYPZBYCAgEPDxYCHwAFC05BREEgQ09OU1RBFgIfAgUPRm9udC1Cb2xkOnRydWU7ZAK9AQ9kFgJmDxYCHwIFI2JvcmRlcjoxcHggc29saWQgZ3JheTtkaXNwbGF5Om5vbmU7ZAK/AQ9kFgJmD2QWAgICD2QWAgIBDw8WAh8BaGRkAscBDw8WAh8ABQgxLjg2NCwwMGRkAg0PDxYIHwAFODxTTUFMTD5WZXJzw6NvIDxVPmVtIGRlc2Vudm9sdmltZW50bzwvVT46IDEuMDEuMjwvU01BTEw+HglGb3JlQ29sb3IKjQEeCUZvbnRfU2l6ZSgqIlN5c3RlbS5XZWIuVUkuV2ViQ29udHJvbHMuRm9udFVuaXQFU21hbGweBF8hU0IChAhkZGShadoehqgeqWbAa4ok+m0K1XrqlQ/Z0DfbTvjfBKQshw==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/IPVANET_Consulta/WebResource.axd?d=9ZBMOKx_PZkL6TmsTkKnqH2rBG4065ELQsgCwEKK_QomwmUPs197odDfOPcx9X-GTW0CEGef1shQZ7uRGGH77SU9KEvnqe6rttRXeZyganM1&amp;t=637814552020000000" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+var __cultureInfo = {"name":"pt-BR","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":",","IsReadOnly":true,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":".","CurrencySymbol":"R$","NaNSymbol":"NaN (Não é um número)","CurrencyNegativePattern":9,"NumberNegativePattern":1,"PercentPositivePattern":1,"PercentNegativePattern":1,"NegativeInfinitySymbol":"-Infinito","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":",","NumberGroupSeparator":".","CurrencyPositivePattern":2,"PositiveInfinitySymbol":"+Infinito","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":",","PercentGroupSeparator":".","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"","Calendar":{"MinSupportedDateTime":"\/Date(-62135589600000)\/","MaxSupportedDateTime":"\/Date(253402300799999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":true},"DateSeparator":"/","FirstDayOfWeek":0,"CalendarWeekRule":0,"FullDateTimePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss","LongDatePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","LongTimePattern":"HH:mm:ss","MonthDayPattern":"d\u0027 de \u0027MMMM","PMDesignator":"","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"dd/MM/yyyy","ShortTimePattern":"HH:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM\u0027 de \u0027yyyy","AbbreviatedDayNames":["dom","seg","ter","qua","qui","sex","sáb"],"ShortestDayNames":["D","S","T","Q","Q","S","S"],"DayNames":["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],"AbbreviatedMonthNames":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""],"MonthNames":["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],"IsReadOnly":true,"NativeCalendarName":"Calendário gregoriano","AbbreviatedMonthGenitiveNames":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""],"MonthGenitiveNames":["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""]},"eras":[1,"d.C.",null,0]};//]]>
+</script>
+
+<script src="/IPVANET_Consulta/ScriptResource.axd?d=nVK2rWRBOqupkKtAGjvnuUmcAINXqP6_vCTep33hHt01-gg9YGE2rSbeq7u-33v45AX9OqXFr_dP7IurmolCV2oOOEch0h4hRgUVFWjPI1V9-wDp4gzk7RbPm80JVU1uaAU1plsV56GdnwSod9yExuTYiXcVxj2eAjXDGvLdXFo1&amp;t=49337fe8" type="text/javascript"></script>
+<script src="/IPVANET_Consulta/ScriptResource.axd?d=400fQrLQez8QXl3DCTE1gjPtSJi7D72dSH3VezKkPhpQp_q4C50hcHlxz1psXYN_-eBuk3KOZJea0AFAIk9a0tQuXkUVsWhPPs65uQJUVsy7hk44MwKUxRRKb3w7Krof3Q9B4LMOVGW4u5J_mP8XS_0RIc1FnLEDfsmZs54NoUABUXSaXKXKVUvhAaNvNaWd0&amp;t=49337fe8" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6C55DBD2" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAPqzLORTSY4HSS7bBkqs4gn2dxFve9jlm1CfxpnGIHXQ4CWLqHKUDR1Ootfa91CEauhy/m69EvqI+uQP2neoDA10j7Xuqm1OyMjDBvxB9SE0w==" />
+</div>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ToolkitScriptManager1', 'form1', ['tctl00$conteudoPaginaPlaceHolder$pnlModalidadesPagto','conteudoPaginaPlaceHolder_pnlModalidadesPagto','tctl00$conteudoPaginaPlaceHolder$pnlPagamentosEfetuados','conteudoPaginaPlaceHolder_pnlPagamentosEfetuados'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+    <!-- Cabe?alho -->
+    <div id="global" class="noPrint">
+      <table style="width: 100%; border-bottom: solid 1px #000000; padding: 0;" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width: 75%; text-align: left; vertical-align: top;">
+            <h1 id="logo">
+              <a href="http://www.fazenda.sp.gov.br" title="Secretaria da Fazenda do Estado de São Paulo">
+                Secretaria da Fazenda</a>
+            </h1>
+          </td>
+          <td style="width: 75%; text-align: right">
+            <img src="../Images/header_bg.jpg" alt="Estado de São Paulo" /></td>
+        </tr>
+      </table>
+    </div>
+    <!-- T?tulo da P?gina / Sistema -->
+    <table style="width: 100%; border: 0; border-bottom: solid 1px #000000;">
+      <tr style="height: 45px">
+        <td class="titulo_pagina" style="width: 100%; padding-left: 5px; padding-right: 5px">
+          <!-- T?tulo da p?gina parametrizado -->
+          
+    <table cellspacing="0" cellpadding="0" style="width: 100%">
+        <tr>
+            <td style="height: 20px; width: 750px">
+                <span id="tituloPaginaPlaceHolder_Label151" title="Débitos vinculados ao veículo" class="alinharEsquerda" style="font-size:Medium;font-weight:bold;">Débitos vinculados ao veículo</span>
+            </td>
+            <td>
+                <span id="tituloPaginaPlaceHolder_txtDataConsulta" title="data e hora das informações" class="alinharDireita" style="display:inline-block;font-size:Small;width:436px;height: 10px; color: gray">Data da Consulta: 16/02/2023 10:59</span>
+            </td>
+        </tr>
+    </table>
+
+        </td>
+        <td class="titulo_sistema" style="width: 100%; padding-left: 5px; padding-right: 5px; text-align:right;">
+          <span id="nomeSistemaSpan"></span>
+        </td>
+      </tr>
+    </table>
+    <!-- Menu -->
+    <div id="menuSuperiorPanel" class="menuSuperior">
+	
+      
+
+    
+</div>
+    <table id="tableMenu" style="width:100%;">
+	<tr id="tableMenuRow1" class="cabecalhoMenu">
+		<td id="tableMenuRow1Cell1" class="cabecalhoBotoesMenu"><div id="botaoFecharPanel">
+			
+            <img src="../Images/Icones/botao_sair.gif" id="imgSairSistema" class="imgButton" alt="Fechar" onclick="javascript:SairSistema();" />
+          
+		</div></td>
+	</tr>
+</table>
+    <!-- Conte?do da P?gina -->
+    <table class="conteudoGeral">
+      <tr>
+        <td class="style1">
+            &nbsp;</td>
+        <td class="conteudoPrincipal" style="width: 100%; padding-left: 5px; padding-right: 5px">
+
+          
+    <table>
+        <tr>
+            <td style="width: 10%">
+            </td>
+            <td style="width: 80%">
+                <div id="conteudoPaginaPlaceHolder_Panel1" style="width:935px;">
+	
+                    
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label127" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" 
+                        style="border: 1px solid gray; width: 100%;">
+                        <tr>
+                            <td align="center" style="height: 10px; background-color: #e6e6e6">
+                                <span id="conteudoPaginaPlaceHolder_Label62" background-color="#e6e6e6" style="font-size:Small;font-weight:bold;height: 10px">OBSERVAÇÕES IMPORTANTES</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable" style="height: 10px">
+                                    <tr>
+                                        <td style="font-family: Verdana; font-size: 12px; background-color: #e6e6e6">
+                                            <span id="conteudoPaginaPlaceHolder_Label128">                                                                       </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label129" style="font-size:Smaller;">       1) Proprietário, caso algum dado do veículo esteja incorreto, procure uma unidade do
+                            Detran para regularização.</span>
+                                            <br />
+                                            <span id="conteudoPaginaPlaceHolder_Label130">                                                                </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label131" style="font-size:Smaller;">       2) Não deixe de comunicar ao órgão de trânsito, no prazo de até 30 (trinta) dias:</span>
+                                            <br />
+                                            <span id="conteudoPaginaPlaceHolder_Label132">              </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label133" style="font-size:Smaller;"> - o seu novo endereço, ainda que dentro do mesmo município;</span>
+                                            <br />
+                                            <span id="conteudoPaginaPlaceHolder_Label135"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label134" style="font-size:Smaller;">- a venda de seu veículo ou a transferência para a seguradora em caso de indenização.</span>
+                                            <br />
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 40px" class="alinharJustificado, negrito">
+                            <td class=" alinharCentro" style="font-size: small">
+                                Esta pesquisa tem caráter apenas informativo.&nbsp;
+                                <span id="conteudoPaginaPlaceHolder_Label144" style="font-size:Small;font-weight:bold;text-decoration:underline;">Não</span>
+                                &nbsp;é válida como certidão
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label60" style="font-size:Small;font-weight:bold;">VEÍCULO</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_lblRenavam" style="font-weight:bold;">Renavam:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtRenavam">01076858306</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label1" style="font-weight:bold;">Espécie:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtEspecie">PASSAGEIRO</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label2" style="font-weight:bold;">Placa:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtPlaca">FJQ8705</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label4" style="font-weight:bold;">Categoria:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtCategoria">PARTICULAR</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label3" style="font-weight:bold;">Marca / Modelo:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtMarcaModelo">HONDA/CIVIC LXR          </span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label6" style="font-weight:bold;">Tipo:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtTipo">AUTOMOVEL</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label8" style="font-weight:bold;">Faixa do IPVA:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtFaixaIPVA">1537370</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label10" style="font-weight:bold;">Passageiros:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtPassageiros">5</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label5" style="font-weight:bold;">Ano de Fabricação:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoFabric">2015</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label9" style="font-weight:bold;">Carroceria:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtCarroceria">INEXISTENTE</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label12" style="font-weight:bold;">Município:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtMunicipio">244-6      Campinas</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label14" style="font-weight:bold;">Último Licenciamento:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoUltLicen">2022</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 10px; width: 175px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label16" style="font-weight:bold;">Combustível:</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtCombustivel">ALCOOL/GASOLINA</span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label18" style="font-weight:bold;"> </span>
+                                        </td>
+                                        <td style="height: 10px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label19"> </span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro">
+                                        <td style="width: 175px" class="style1">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label74" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="negrito" align="center" style="background-color: #8b0000">
+                                <span id="conteudoPaginaPlaceHolder_Label63" title="Atenção" style="color:White;font-size:Small;font-weight:bold;">ATENÇÃO</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharJustificado, negrito">
+                                        <td class="alinharJustificado" style="font-family: Verdana; font-size: 12px; font-weight: bold">
+                                            O IPVA deverá ser pago na rede bancária autorizada, inclusive pela Internet, utilizando o código RENAVAM constante no Certificado de Registro e Licenciamento de Veículos - CRLV. A BAIXA DO IMPOSTO DE SEU VEÍCULO SERÁ IMEDIATA.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label149" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label29" style="font-size:Small;font-weight:bold;"> IPVA </span>
+                                <span id="conteudoPaginaPlaceHolder_txtAnoCompetencia" style="font-size:Small;font-weight:bold;">2023</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            - O pagamento do imposto em atraso estará sujeito aos acréscimos legais (multa e juros de mora conforme Lei nº 13.296/2008, artigo 28);<br />
+                                            - O não pagamento do imposto motivará a inclusão do débito no Cadastro Informativo de Créditos não Quitados de Órgãos e Entidades Estaduais (CADIN ESTADUAL) nos termos da Lei nº 12.799/2008.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="background-color: Silver">
+		<td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label11" style="font-weight:bold;">(1) Base de Cálculo </span>
+                                        </td>
+		<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label93" style="font-weight:bold;">  </span>
+                                        </td>
+		<td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label17" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label136" style="font-weight:bold;">R$ </span>
+                                        </td>
+		<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValBaseCalculo">71.197,00</span>
+                                        </td>
+	</tr>
+	
+                                    <tr>
+                                        <td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label13" style="font-weight:bold;">(2) Alíquota </span>
+                                        </td>
+                                        <td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label15" style="font-weight:bold;"> </span>
+                                        </td>
+                                        <td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label94" style="font-weight:bold;">  </span>
+                                        </td>
+                                        <td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtAliq">4,0</span>
+                                            <span id="conteudoPaginaPlaceHolder_Label20" style="font-weight:bold;"> % </span>
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: Silver">
+		<td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label21" style="font-weight:bold;">(3) IPVA Apurado (3) = (1)*(2)</span>
+                                        </td>
+		<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label95" style="font-weight:bold;">  </span>
+                                        </td>
+		<td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label22" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label137" style="font-weight:bold;">R$ </span>
+                                        </td>
+		<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtIpvaApurado">2.847,88</span>
+                                        </td>
+	</tr>
+	
+                                    <tr>
+                                        <td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label24" style="font-weight:bold;">(4) Crédito da Nota Fiscal Paulista</span>
+                                        </td>
+                                        <td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label96" style="font-weight:bold;">  </span>
+                                        </td>
+                                        <td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label25" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label138" style="font-weight:bold;"></span>
+                                        </td>
+                                        <td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValCreditoNFP">---</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: Silver">
+		<td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label27" style="font-weight:bold;">(5) IPVA devido (5)=(3)-(4)</span>
+                                        </td>
+		<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label97" style="font-weight:bold;">  </span>
+                                        </td>
+		<td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label28" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label139" style="font-weight:bold;">R$ </span>
+                                        </td>
+		<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValIpvaDevido">2.847,88</span>
+                                        </td>
+	</tr>
+	
+                                    <tr>
+                                        <td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label30" style="font-weight:bold;">(6) Pagamento efetuado</span>
+                                        </td>
+                                        <td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label98" style="font-weight:bold;">  </span>
+                                        </td>
+                                        <td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label31" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label140" style="font-weight:bold;">R$ </span>
+                                        </td>
+                                        <td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValPagtoEfetuado">1.139,14</span>
+                                        </td>
+                                    </tr>
+                                    <tr id="conteudoPaginaPlaceHolder_Tr6" style="background-color: Silver">
+		<td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label152" style="font-weight:bold;">(7) Descontos e outros abatimentos</span>
+                                        </td>
+		<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label153" style="font-weight:bold;">  </span>
+                                        </td>
+		<td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label154" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label155" style="font-weight:bold;"></span>
+                                        </td>
+		<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtIpvaDescto">---</span>
+                                        </td>
+	</tr>
+	
+                                    <tr>
+		<td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label33" style="font-weight:bold;">(8) Saldo (8)=(5)-(6)-(7) </span>
+                                        </td>
+		<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label99" style="font-weight:bold;">  </span>
+                                        </td>
+		<td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label34" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label141" style="font-weight:bold;">R$ </span>
+                                        </td>
+		<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtSaldoDevido">1.708,74</span>
+                                        </td>
+	</tr>
+	
+                                    <tr style="background-color: Silver">
+                                        <td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label36" style="font-weight:bold;">(9) Acréscimos legais </span>
+                                        </td>
+                                        <td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label100" style="font-weight:bold;">  </span>
+                                        </td>
+                                        <td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label37" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label142" style="font-weight:bold;">R$ </span>
+                                        </td>
+                                        <td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValAcrescimosLegais">0,03</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="background-color: Gray">
+		<td style="height: 20px; width: 448px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label23" style="color:White;font-weight:bold;">(10) Valor a pagar (10)=(8)+(9)</span>
+                                        </td>
+		<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label101" style="font-weight:bold;">  </span>
+                                        </td>
+		<td style="height: 20px; width: 475px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label26" style="font-weight:bold;"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label143" style="color:White;font-weight:bold;">R$ </span>
+                                        </td>
+		<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValoraPagar" style="color:White;font-weight:bold;">1.708,77</span>
+                                        </td>
+	</tr>
+	
+                                    <tr>
+		<td colspan="4" style="height: 14px">
+                                            <span id="conteudoPaginaPlaceHolder_Label69" style="color:Red;font-weight:bold;">ATENÇÃO: [1] PARA VEÍCULOS COM IMUNIDADE, ISENÇÃO OU DISPENSA DE PAGAMENTO DE IPVA, A FUTURA TRANSFERÊNCIA DE PROPRIEDADE PODERÁ GERAR DÉBITO DE IPVA; [2] PARA VEÍCULOS COM ISENÇÃO DE IPVA PCD CUJA COBRANÇA ESTEJA SUSPENSA PODERÁ SER GERADO DÉBITO DE IPVA APÓS A ANÁLISE DO PEDIDO DE ISENÇÃO.</span>
+                                        </td>
+	</tr>
+	
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="conteudoPaginaPlaceHolder_pnlModalidadesPagto" style="border: 1px solid gray">
+		
+                            <table cellspacing="0" cellpadding="0" style="width: 100%; border: 1px solid gray">
+                                <tr>
+                                    <td class="loginConteudo">
+                                        <table class="loginTable">
+                                            <tr align="center">
+                                                <td>
+                                                    <span id="conteudoPaginaPlaceHolder_Label103" style="font-size:Small;font-weight:bold;">PAGAMENTO DE DÉBITOS</span>
+                                                </td>
+                                            </tr>
+                                            <tr style="height: 10px" class="alinharCentro, negrito">
+                                                <td>
+                                                    A opção pelo parcelamento do imposto condiciona-se ao recolhimento da 1ª parcela no prazo estabelecido e pelo valor correto. As parcelas devem ser recolhidas sucessivamente, observando-se os prazos de vencimento. Não será admitida a inversão das duas últimas parcelas. Pague na rede bancária autorizada com o código RENAVAM.</td>
+                                            </tr>
+                                            <tr style="height: 10px" class="alinharCentro, negrito">
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table cellspacing="0" cellpadding="0" style="width: 100%; border: 1px solid gray;
+                                margin-bottom: 0px;">
+                                <tr>
+                                    <td class="loginConteudo">
+                                        <table class="loginTable">
+                                            <tr style="background-color: #d3d3d3; border: 1px, solid, gray">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label32" style="font-weight:bold;">Modalidades disponíveis</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_Label35" style="font-weight:bold;">Vencimento</span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    <span id="conteudoPaginaPlaceHolder_Label38" style="font-weight:bold;">(Pague na rede bancária autorizada com o código RENAVAM)</span>
+                                                </td>
+			<td style="height: 25px; width: 13px; " class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label39"> </span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_Label65" style="font-weight:bold;">Valor</span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trAvistaComDesconto" style="border:1px solid gray;background-color:Silver;display:none;">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label40" style="font-weight:bold;">À vista antecipado com desconto</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVencComDescto"></span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label43"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label120">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorIpvaComDescto"></span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trAvistaSemDesconto" style="border: 1px solid gray">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label41" style="font-weight:bold;">À vista com acréscimos</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVencSemDescto">17/02/2023</span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label44"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label121">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorIpvaSemDescto">1.708,71</span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trParcela01" style="border:1px solid gray;background-color:Silver;display:none;">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label47" style="font-weight:bold;">1ª Parcela</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVenctoParcela1"></span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label49"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label122">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorParcela1"></span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trParcela02" style="border:1px solid gray;display:none;">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label51" style="font-weight:bold;">2ª Parcela</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVenctoParcela2"></span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label53"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label123">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorParcela2"></span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trParcela03" style="border: 1px solid gray; background-color: Silver">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label55" style="font-weight:bold;">3ª Parcela</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVenctoParcela3">17/03/2023</span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label57"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label124">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorParcela3">569,57</span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trParcela04" style="border:1px solid gray;display:none;">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label66" style="font-weight:bold;">4ª Parcela</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVenctoParcela4"></span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label81"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label82">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorParcela4"></span>
+                                                </td>
+		</tr>
+		
+                                            <tr id="conteudoPaginaPlaceHolder_trParcela05" style="border:1px solid gray;background-color:Silver;display:none;">
+			<td style="height: 25px; width: 224px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label78" style="font-weight:bold;">5ª Parcela</span>
+                                                </td>
+			<td style="height: 25px; width: 224px">
+                                                    <span id="conteudoPaginaPlaceHolder_txtDtVenctoParcela5"></span>
+                                                </td>
+			<td style="height: 25px; width: 797px">
+                                                    &nbsp;</td>
+			<td style="height: 25px; width: 13px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label89"></span>
+                                                    <span id="conteudoPaginaPlaceHolder_Label90">R$</span>
+                                                </td>
+			<td style="height: 25px; width: 117px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_txtValorParcela5"></span>
+                                                </td>
+		</tr>
+		
+                                            <tr style="height: 10px" class="alinharCentro, negrito">
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        
+	</div>
+                    <!--painel novo-->
+                    <div id="conteudoPaginaPlaceHolder_pnlPagamentosEfetuados" style="border: 1px solid gray">
+		
+                            <table cellspacing="0" cellpadding="0" style="width: 100%; border: 1px solid gray">
+                                <tr>
+                                    <td class="loginConteudo">
+                                        <table id="conteudoPaginaPlaceHolder_tbPagtosEfetuados" class="loginTable" width="100%">
+			<tr align="center">
+				<td colspan="7" style="border-bottom:1px gray solid">
+                                                    <span id="conteudoPaginaPlaceHolder_lblTituloPagtosEfetuados" style="font-size:Small;font-weight:bold;">PAGAMENTOS EFETUADOS - 2023</span>
+                                                </td>
+			</tr>
+			<tr style="background-color: #d3d3d3; border: 1px, solid, gray; border-bottom:1px gray solid">
+				<td style="height: 25px; width: 196px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label91" style="font-weight:bold;">Data da Arrecadação</span>
+                                                </td>
+				<td style="height: 25px; width: 196px">
+                                                    <span id="conteudoPaginaPlaceHolder_Label92" style="font-weight:bold;">Valor Pago</span>
+                                                </td>
+				<td style="height: 25px; width: 196px">
+                                                    <span id="conteudoPaginaPlaceHolder_Label106" style="font-weight:bold;">Imposto</span>
+                                                </td>
+				<td style="height: 25px; width: 196px; " class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label108" style="font-weight:bold;">Juros</span>
+                                                </td>
+				<td style="height: 25px; width: 196px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_Label119" style="font-weight:bold;">Multa</span>
+                                                </td>
+				<td style="height: 25px; width: 196px; " class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_Label192" style="font-weight:bold;">Valor Restituição</span>
+                                                </td>
+				<td style="height: 25px; width: 199px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_Label193" style="font-weight:bold;">Valor Não Restituível (multa/juros)</span>
+                                                </td>
+			</tr>
+			<tr style="height: 10px; border: 1px, solid, gray" align="left">
+				<td colspan="7">
+                                                    
+                                                </td>
+			</tr>
+			<tr runat="server" border-bottom="1px" border-color="gray" border-style="solid" style="border-width:1px;border-color:gray;border-style:solid;background-color:Silver;" bordercolor="gray" background-color="Silver">
+				<td style="height:25px;align:left;width:196px;" align="left"><span>16/01/2023</span></td>
+				<td style="height:25px;align:left;width:196px;" align="left"><span>569,57</span></td>
+				<td style="height:25px;align:left;width:196px;" align="left"><span>569,57</span></td>
+				<td style="height:25px;width:196px;" class="alinharDireita"><span>0,00</span></td>
+				<td style="height:25px;width:196px;" align="right"><span>0,00</span></td>
+				<td style="height:25px;width:196px;" align="right"><span>0,00</span></td>
+				<td style="height:25px;width:199px;" align="right"><span>0,00</span></td>
+			</tr>
+			<tr runat="server" border-bottom="1px" border-color="gray" border-style="solid" style="border-width:1px;border-color:gray;border-style:solid;" bordercolor="gray">
+				<td style="height:25px;align:left;width:196px;" align="left"><span>15/02/2023</span></td>
+				<td style="height:25px;align:left;width:196px;" align="left"><span>569,57</span></td>
+				<td style="height:25px;align:left;width:196px;" align="left"><span>569,57</span></td>
+				<td style="height:25px;width:196px;" class="alinharDireita"><span>0,00</span></td>
+				<td style="height:25px;width:196px;" align="right"><span>0,00</span></td>
+				<td style="height:25px;width:196px;" align="right"><span>0,00</span></td>
+				<td style="height:25px;width:199px;" align="right"><span>0,00</span></td>
+			</tr>
+		</table>
+		
+                                    </td>
+                                </tr>
+                            </table>
+                            <table id="conteudoPaginaPlaceHolder_tbEncapsulaPagtos" cellspacing="0" cellpadding="0" style="width: 100%; border: 1px solid gray; margin-bottom: 0px;">
+			<tr>
+				<td class="loginConteudo">
+                                        <table class="loginTable">
+                                            <tr id="conteudoPaginaPlaceHolder_trPagtoTotal" style="background-color: #d3d3d3; border: 1px, solid, gray">
+					<td style="height: 25px; width: 196px" align="left">
+                                                    <span id="conteudoPaginaPlaceHolder_Label190"><b>TOTAL</b></span>
+                                                </td>
+					<td style="height: 25px; width: 196px">
+                                                    <span id="conteudoPaginaPlaceHolder_lblVlPagoTot"><b>1.139,14</b></span>
+                                                </td>
+					<td style="height: 25px; width: 196px">
+                                                    <span id="conteudoPaginaPlaceHolder_lblVlImpostoTot"><b>1.139,14</b></span>
+                                                </td>
+					<td style="height: 25px; width: 196px" class="alinharDireita">
+                                                    <span id="conteudoPaginaPlaceHolder_lblVlJurosTot"><b>0,00</b></span>
+                                                </td>
+					<td style="height: 25px; width: 196px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_lblVlMultaTot"><b>0,00</b></span>
+                                                </td>
+					<td style="height: 25px; width: 196px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_lblVlRestituicaoTot"><b>0,00</b></span>
+                                                </td>
+					<td style="height: 25px; width: 199px" align="right">
+                                                    <span id="conteudoPaginaPlaceHolder_lblVlNaoRestituidoTot"><b>0,00</b></span>
+                                                </td>
+				</tr>
+				
+                                            <tr style="height: 10px" class="alinharCentro, negrito">
+                                                <td>
+                                                    &nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr style="height: 10px" align="left" visible="false">
+                                                <td colspan="2">
+                                                    <span id="conteudoPaginaPlaceHolder_lblObsPagamentos"></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+			</tr>
+		</table>
+		
+                        
+	</div>
+
+                    <!--fim painel novo-->
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label156" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="height: 16px">
+                        <tr>
+                            <td class="alinharEsquerda, negrito" style="height: 16px">
+                                <span id="conteudoPaginaPlaceHolder_Label83" style="font-size:Small;font-weight:bold;">IPVA – DÉBITOS NÃO INSCRITOS</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table id="conteudoPaginaPlaceHolder_tbIpvaPend" class="loginTable">
+		<tr id="conteudoPaginaPlaceHolder_Tr7" style="background-color: #d3d3d3; border: 1px solid gray">
+			<td style="height: 20px; width: 224px" align="left" colspan="1">
+                                            <span id="conteudoPaginaPlaceHolder_Label50" style="font-weight:bold;">Exercício</span>
+                                        </td>
+			<td style="height: 20px;width:797px" colspan="2" align="left">
+                                            
+                                             <b>(Pague na rede bancária autorizada com o código RENAVAM)</b>
+                                        </td>
+			<td style="height: 20px; width: 13px" align="right" colspan="1">
+                                            <span id="conteudoPaginaPlaceHolder_Label58"></span>
+                                        </td>
+			<td style="height: 20px; width: 117px; text-align: right;" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label85" style="font-weight:bold;">Valor</span>
+                                        </td>
+		</tr>
+		<tr id="conteudoPaginaPlaceHolder_tr2" style="border: 1px solid gray">
+			<td style="height: 20px; width: 224px" align="left" colspan="1">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoPend01" style="font-weight:bold;">NADA CONSTA</span>
+                                        </td>
+			<td style="height: 20px;width:797px" colspan="2" align="center">
+                                            &nbsp;
+                                        </td>
+			<td style="height: 20px; width: 13px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_lblRealPend01">R$</span>
+                                        </td>
+			<td style="height: 20px; width: 117px; text-align: right;" align="right" colspan="1">
+                                                                                          
+                                           
+                                        </td>
+		</tr>
+	</table>
+	
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label148" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label61" style="font-size:Small;font-weight:bold;">IPVA – DÉBITOS INSCRITOS EM DÍVIDA ATIVA</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" 
+                        style="border: 1px solid gray; width: 100%;">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            A existência de débitos em dívida ativa impede o licenciamento ou a transferência
+                                            do veículo.<br />
+                                            Para quitar os débitos, acesse
+                                            <a id="conteudoPaginaPlaceHolder_HyperDividaAtiva" title="link divida ativa" href="javascript:void window.open(&#39;http://www.dividaativa.pge.sp.gov.br&#39;);" style="font-weight:bold;text-decoration:underline;">&nbsp;www.dividaativa.pge.sp.gov.br</a>
+                                            .</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="background-color: #d3d3d3; border: 1px solid gray">
+		<td style="height: 15px; width: 900px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label42" style="font-weight:bold;">Exercício</span>
+                                        </td>
+		<td style="height: 15px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label46" style="font-weight:bold;"> </span>
+                                        </td>
+		<td style="height: 15px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label48" style="font-weight:bold;"> </span>
+                                        </td>
+		<td style="height: 15px; width: 413px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label52" style="font-weight:bold;"> </span>
+                                        </td>
+	</tr>
+	
+                                    <tr id="conteudoPaginaPlaceHolder_linhaDividaAtiva" style="border: 1px solid gray">
+		<td style="height: 15px; width: 900px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtExisteDividaAtiva" style="font-weight:bold;">NADA CONSTA</span>
+                                        </td>
+		<td style="height: 15px; width: 250px" align="right">
+                                            &nbsp;
+                                        </td>
+		<td style="height: 15px; width: 250px" align="right">
+                                            &nbsp;
+                                        </td>
+		<td style="height: 15px; width: 413px" align="right">
+                                            
+                                            
+                                            
+                                        </td>
+	</tr>
+	
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label147" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label59" style="font-size:Small;font-weight:bold;">DPVAT</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" 
+                        style="border: 1px solid gray; width: 100%;">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            O valor informado é para pagamento integral do prêmio. Para mais informações acesse<br />
+                                            <a id="conteudoPaginaPlaceHolder_HyperDpvat" title="link parcelar dpvat" href="javascript:void window.open(&#39;http://www.seguradoralider.com.br/Pages/Saiba-como-pagar.aspx&#39;);" style="font-weight:bold;text-decoration:underline;">http://www.seguradoralider.com.br/Pages/Saiba-como-pagar.aspx</a>
+                                            &nbsp;ou ligue para 4020-1596 (Regiões Metropolitanas) / 0800-022 12 04 (Outras Regiões).</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table id="conteudoPaginaPlaceHolder_tbDpvats" class="loginTable">
+		<tr style="background-color: #d3d3d3; border: 1px solid gray">
+			<td style="height: 20px; width: 251px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label67" style="font-weight:bold;">Exercício</span>
+                                        </td>
+			<td style="height: 20px; width: 320px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label73" style="font-weight:bold;"> </span>
+                                        </td>
+			<td style="height: 20px; width: 247px">
+                                            <span id="conteudoPaginaPlaceHolder_Label75" style="font-weight:bold;text-align: left"> </span>
+                                        </td>
+			<td style="height: 20px; width: 440px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label76"> </span>
+                                        </td>
+			<td style="height: 20px; width: 117px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label77" style="font-weight:bold;">Valor</span>
+                                        </td>
+		</tr>
+		<tr id="conteudoPaginaPlaceHolder_tr1" style="border: 1px solid gray">
+			<td style="height: 20px; width: 251px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoDpvat01" style="Font-Bold:true;">NADA CONSTA</span>
+                                        </td>
+			<td style="height: 20px; width: 320px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label80"></span>
+                                        </td>
+			<td style="height: 20px; width: 250px">
+                                            
+                                        </td>
+			<td style="height: 20px; width: 440px" align="right">
+                                            
+                                            <span id="conteudoPaginaPlaceHolder_Label113"></span>
+                                        </td>
+			<td style="height: 20px; width: 117px" align="right">
+                                            
+                                        </td>
+		</tr>
+		<tr id="conteudoPaginaPlaceHolder_tr11" style="border:1px solid gray;display:none;">
+			<td style="height: 20px; width: 251px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoDpvat02"></span>
+                                        </td>
+			<td style="height: 20px; width: 320px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label110"></span>
+                                        </td>
+			<td style="height: 20px; width: 250px">
+                                            
+                                        </td>
+			<td style="height: 20px; width: 440px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label111"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label116">R$ </span>
+                                        </td>
+			<td style="height: 20px; width: 117px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValorDpvat02"></span>
+                                        </td>
+		</tr>
+		<tr id="conteudoPaginaPlaceHolder_tr12" style="border:1px solid gray;display:none;">
+			<td style="height: 20px; width: 251px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtAnoDpvat03"></span>
+                                        </td>
+			<td style="height: 20px; width: 320px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label114"></span>
+                                        </td>
+			<td style="height: 20px; width: 250px">
+                                            
+                                        </td>
+			<td style="height: 20px; width: 440px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label115"> </span>
+                                            <span id="conteudoPaginaPlaceHolder_Label117">R$ </span>
+                                        </td>
+			<td style="height: 20px; width: 117px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValorDpvat03"></span>
+                                        </td>
+		</tr>
+	</table>
+	
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label146" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label64" style="font-size:Small;font-weight:bold;">TAXAS</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            Estando recolhidos, pela rede bancária, todos os débitos necessários para a obtenção 
+                                            do serviço de licenciamento, o download e a impressão do CRLV estarão disponíveis 
+                                            no portal do Detran-SP, no aplicativo “CDT - Carteira Digital de Trânsito” do 
+                                            governo federal e ainda no portal de serviços do Senatran.<br />
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 15px">
+                                        <td class="alinharEsquerda, negrito" style="height: 15px">
+                                            <span id="conteudoPaginaPlaceHolder_Label150" style="font-size:Small;font-weight:bold;"> </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table id="conteudoPaginaPlaceHolder_tbTaxasDetalhe" class="loginTable">
+		<tr style="background-color: #d3d3d3; border: 1px solid gray">
+			<td style="height: 15px; width: 800px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label68" style="font-weight:bold;">Licenciamento 2023</span>
+                                        </td>
+			<td style="height: 15px; width: 550px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label70" style="font-weight:bold;"> </span>
+                                        </td>
+			<td style="height: 15px; width: 550px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label56" style="font-weight:bold;"> </span>
+                                        </td>
+			<td style="height: 15px; width: 950px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label71"> </span>
+                                        </td>
+			<td style="height: 15px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label72" style="font-weight:bold;"> </span>
+                                        </td>
+		</tr>
+		<tr id="conteudoPaginaPlaceHolder_linhalicenciamentoAtual" style="border:1px solid gray;background-color:#d3d3d3;display:none;">
+			<td style="height: 15px; width: 800px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_txtLicenciamentoAno">NADA CONSTA</span>
+                                        </td>
+			<td style="height: 15px; width: 550px" align="right">
+                                            &nbsp;
+                                        </td>
+			<td style="height: 15px; width: 550px" align="right">
+                                            &nbsp;
+                                        </td>
+			<td style="height: 15px; width: 950px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_lblRealTaxas01"></span>
+                                        </td>
+			<td style="height: 15px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtValorLicenc01"></span>
+                                        </td>
+		</tr>
+		<tr border-bottom="1px" border-color="gray" border-style="solid" style="border-width:1px;border-color:gray;border-style:solid;background-color:Silver;" bordercolor="gray" background-color="Silver">
+			<td><span style="display:inline-block;height:15px;width:200px;">(1) Taxa Devida</span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:50px;">                                                            </span></td>
+			<td><span style="display:inline-block;height:15px;width:50px;">  </span></td>
+			<td align="right"><span class="alinharDireita" style="display:inline-block;height:15px;width:125px;">                                                         R$ </span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:75px;">155,23</span></td>
+		</tr>
+		<tr border-bottom="1px" border-color="gray" border-style="solid" style="border-width:1px;border-color:gray;border-style:solid;" bordercolor="gray">
+			<td><span style="display:inline-block;height:15px;width:200px;">(2) Multa</span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:50px;">                                                            </span></td>
+			<td><span style="display:inline-block;height:15px;width:50px;">  </span></td>
+			<td align="right"><span class="alinharDireita" style="display:inline-block;height:15px;width:125px;">                                                         R$ </span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:75px;">0,00</span></td>
+		</tr>
+		<tr border-bottom="1px" border-color="gray" border-style="solid" style="border-width:1px;border-color:gray;border-style:solid;background-color:Silver;" bordercolor="gray" background-color="Silver">
+			<td><span style="display:inline-block;height:15px;width:200px;">(3) Juros</span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:50px;">                                                            </span></td>
+			<td><span style="display:inline-block;height:15px;width:50px;">  </span></td>
+			<td align="right"><span class="alinharDireita" style="display:inline-block;height:15px;width:125px;">                                                         R$ </span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:75px;">0,00</span></td>
+		</tr>
+		<tr border-bottom="1px" border-color="gray" border-style="solid" style="border-width:1px;border-color:gray;border-style:solid;background-color:Gray;color:White;" bordercolor="gray" background-color="Gray" color="White">
+			<td><span style="display:inline-block;height:15px;width:200px;">(4) Valor a Pagar (4)=(1)+(2)+(3)</span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:50px;">                                                            </span></td>
+			<td><span style="display:inline-block;height:15px;width:50px;">  </span></td>
+			<td align="right"><span class="alinharDireita" style="display:inline-block;height:15px;width:125px;">                                                         R$ </span></td>
+			<td><span class="alinharDireita" style="display:inline-block;height:15px;width:75px;">155,23</span></td>
+		</tr>
+	</table>
+	
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label145" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 20px">
+                            <td class="alinharEsquerda, negrito" style="height: 20px">
+                                <span id="conteudoPaginaPlaceHolder_Label79" style="font-size:Small;font-weight:bold;">MULTAS</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" 
+                        style="border: 1px solid gray; width: 100%;">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table class="loginTable">
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            Os valores correspondentes poderão ser alterados em razão de baixas por pagamento ou cadastramento de novas multas.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td class="loginConteudo">
+                                <table id="conteudoPaginaPlaceHolder_tbMultaResumo" class="loginTable">
+		<tr id="conteudoPaginaPlaceHolder_tr5">
+			<td style="height: 15px; " align="left" colspan="5">
+                                            <span id="conteudoPaginaPlaceHolder_txtResumoMultas" style="Font-Bold:true;">NADA CONSTA</span>
+                                        </td>
+		</tr>
+		<tr id="conteudoPaginaPlaceHolder_Tr41" style="background-color: #d3d3d3; border: 1px solid gray">
+			<td style="height: 20px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label86" style="font-weight:bold;">Órgão</span>
+                                        </td>
+			<td style="height: 20px; width: 250px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label87" style="font-weight:bold;"> </span>
+                                        </td>
+			<td style="height: 20px; width: 247px; text-align: right;">
+                                            <span id="conteudoPaginaPlaceHolder_Label88" style="display:inline-block;font-weight:bold;width:118px;text-align: right">Quantidade</span>
+                                        </td>
+			<td style="height: 20px; width: 460px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label107"> </span>
+                                        </td>
+			<td style="height: 20px; width: 102px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label118" style="font-weight:bold;">Valor</span>
+                                        </td>
+		</tr>
+	</table>
+	
+                                <table id="conteudoPaginaPlaceHolder_tbMultaTotais" class="loginTable">
+		<tr id="conteudoPaginaPlaceHolder_tr8" style="border:1px solid gray;display:none;">
+			<td style="height: 20px; width: 250px" align="left">
+                                            <span id="conteudoPaginaPlaceHolder_Label104" style="font-weight:bold;">TOTAL : </span>
+                                        </td>
+			<td style="height: 20px; width: 170px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label105" style="font-weight:bold;"> </span>
+                                        </td>
+			<td style="height: 20px; width: 350px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtQtdeTotalMultas" style="font-weight:bold;"></span>
+                                        </td>
+			<td style="height: 20px; width: 505px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_Label112" style="font-weight:bold;"> R$ </span>
+                                        </td>
+			<td style="height: 20px; width: 107px" align="right">
+                                            <span id="conteudoPaginaPlaceHolder_txtVlTotalMultas" style="font-weight:bold;"></span>
+                                        </td>
+		</tr>
+	</table>
+	
+                                <table id="conteudoPaginaPlaceHolder_tbMultaDetalhe" class="loginTable">
+		<tr id="conteudoPaginaPlaceHolder_tr3">
+			<td style="height: 15px; width: 250px" align="right">
+                                            &nbsp;
+                                        </td>
+			<td style="height: 15px; width: 250px" align="right">
+                                            &nbsp;
+                                        </td>
+			<td style="height: 25px; width: 250px" align="center">
+                                            
+                                        </td>
+			<td style="height: 15px; width: 250px" align="right">
+                                            &nbsp;
+                                        </td>
+			<td style="height: 15px; width: 250px" align="right">
+                                            &nbsp;
+                                        </td>
+		</tr>
+	</table>
+	
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label109" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr class="negrito" align="center" style="background-color: Silver; height: 20px">
+                            <td style="height: 15px; width: 125px" align="right">
+                                <span id="conteudoPaginaPlaceHolder_Label54">Total de Débitos</span>
+                            </td>
+                            <td style="height: 15px; width: 900px" align="right">
+                                <span id="conteudoPaginaPlaceHolder_Label126">R$ </span>
+                            </td>
+                            <td style="height: 15px; width: 102px" align="right">
+                                <span id="conteudoPaginaPlaceHolder_txtValorTotalDebitos">1.864,00</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr style="height: 15px">
+                            <td class="alinharEsquerda, negrito" style="height: 15px">
+                                <span id="conteudoPaginaPlaceHolder_Label125" style="font-size:Small;font-weight:bold;"> </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0" style="border: 1px solid gray">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr align="center">
+                                        <td class="negrito" align="center" style="background-color: Gray; height: 20px">
+                                            <span id="conteudoPaginaPlaceHolder_Label102" style="color:White;font-size:Small;font-weight:bold;">OUTRAS INFORMAÇÕES</span>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            TAXA DE LICENCIAMENTO
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            O vencimento normal da Taxa de Licenciamento varia de acordo com o escalonamento
+                                            fixado pelo Detran. Consulte o site
+                                            <a id="conteudoPaginaPlaceHolder_HyperLinkDetranSP" title="link para o Detran-SP" href="javascript:void window.open(&#39;http://www.detran.sp.gov.br&#39;);" style="font-weight:bold;text-decoration:underline;">www.detran.sp.gov.br</a>
+                                            .</td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            LICENCIAMENTO ANTECIPADO
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            O pagamento da Taxa de Licenciamento do exercício corrente somente poderá ser antecipado
+                                            e efetuado junto com o IPVA desde que tenham sido recolhidos todos os débitos existentes
+                                            referentes ao licenciamento do exercício anterior, IPVA, seguro DPVAT integral e
+                                            multas de trânsito.&nbsp;A antecipação do licenciamento será permitida quando
+                                            não houver restrições administrativas (tais como gravames, falta de inspeção veicular
+                                            quando exigida, medida judicial, entre outras) no cadastro do Detran-SP.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            A opção pelo licenciamento antecipado pode ser feita até a data do vencimento da
+                                            quinta parcela do IPVA.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            Após o pagamento da taxa de licenciamento no sistema bancário, o download 
+                                            e a impressão do CRLV estarão disponíveis no portal do Detran.SP, no aplicativo 
+                                            “CDT - Carteira Digital de Trânsito” do governo federal e ainda no portal de serviços do Senatran.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            CENTRAL DE ATENDIMENTO - IPVA
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            0800-0170110 (exclusivo para telefone fixo)
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            (11)2450-6810 (exclusivo para telefone móvel)
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            Nossa estrutura de atendimento telefônico atua em duas modalidades:
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            <ul>
+                                                <li>Atendimento humano: de segunda a sexta-feira das 8 às 19 horas;</li>
+                                                <li>Atendimento eletrônico: disponibiliza informações 24 horas, inclusive aos sábados, domingos e feriados.</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px">
+                                        <td>
+                                            Correio Eletrônico: clique <a id="conteudoPaginaPlaceHolder_HyperLinkCorreioEletronico" title="link para o Correio Eletrônico" href="javascript:void window.open(&#39;https://portal.fazenda.sp.gov.br/Paginas/Correio-Eletronico.aspx&#39;);" style="font-weight:bold;text-decoration:underline;">aqui</a>.
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 10px" class="alinharCentro, negrito">
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td height="25px" align="right" width="450px">
+                                <input type="submit" name="ctl00$conteudoPaginaPlaceHolder$btn_Voltar" value="Voltar" id="conteudoPaginaPlaceHolder_btn_Voltar" title="Voltar" style="width:100px;" />
+                            </td>
+                            <td height="25px" align="right" width="150px">
+                                &nbsp;
+                            </td>
+                            <td height="25px" align="left" width="450px">
+                                <input type="submit" name="ctl00$conteudoPaginaPlaceHolder$btn_Imprimir" value="Imprimir" id="conteudoPaginaPlaceHolder_btn_Imprimir" title="Clique aqui para gerar versão para impressão / pdf com informações de débitos" style="width:100px;" />
+                            </td>
+                        </tr>
+                    </table>
+                
+</div>
+            </td>
+            <td style="width: 10%">
+            </td>
+        </tr>
+    </table>
+
+
+        </td>
+        <td class="margemDireitaConteudoGeral">
+          &nbsp;</td>
+      </tr>
+    </table>
+    <!--Vers?o-->
+    <div id="web_version" class="noPrint">
+        <span id="Versao" class="web_version_label" style="color:Red;font-size:Small;"><SMALL>Versão <U>em desenvolvimento</U>: 1.01.2</SMALL></span>
+    </div>
+    <!-- Rodap? -->
+
+    <div id="footer" style="width: 100%" class="noPrint">
+      <table style="width: 100%; padding: 0;" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="width: 75%; text-align: center">
+          Secretaria da Fazenda e Planejamento do Estado de São Paulo - Av. Rangel Pestana,300 - São Paulo - SP - Cep 01017-911 - PABX (11)3243-3400
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </form>
+</body>
+</html>

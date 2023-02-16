@@ -6,9 +6,7 @@ import { load } from 'cheerio';
 // Necessário pois o site não tem um certificado válido
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-const app = express();
-
-export async function getReCaptchaV2Response (googleSiteKey: string, pageUrl: string): Promise<string> {
+async function getReCaptchaV2Response (googleSiteKey: string, pageUrl: string): Promise<string> {
   return (await axios.post('https://k8s.gringo.com.vc/captcha-service-v2/v1/captcha', {
     type: 'ReCaptchaV2',
     args: {
@@ -21,6 +19,8 @@ export async function getReCaptchaV2Response (googleSiteKey: string, pageUrl: st
     }
   })).data.response;
 }
+
+const app = express();
 
 app.post('/sefaz', json(), async (req, res) => {
   const { placa, renavam } = req.body;

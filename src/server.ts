@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Cookie } from 'tough-cookie';
 import { load } from 'cheerio';
 
+// Necessário pois o site não tem um certificado válido
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const app = express();
@@ -73,10 +74,10 @@ app.post('/sefaz', json(), async (req, res) => {
   const captchaResponse = await getReCaptchaV2Response(
     '6Led7bcUAAAAAGqEoogy4d-S1jNlkuxheM7z2QWt',
     'https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Consulta.aspx'
-  )
+  );
 
   // 5. Submeter o formulário (Placa, Renavam, Valor dos input hidden e Captcha)
-  console.log('5. Submeter o formulário (Placa, Renavam, Valor dos input hidden e Captcha)')
+  console.log('5. Submeter o formulário (Placa, Renavam, Valor dos input hidden e Captcha)');
   const formData = new URLSearchParams({
     '__EVENTTARGET': eventTarget,
     '__EVENTARGUMENT': eventArgument,
@@ -111,7 +112,8 @@ app.post('/sefaz', json(), async (req, res) => {
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Windows"',
     }
-  })
+  });
+
   // 6. GET na página aviso.aspx
   console.log('6. GET na página aviso.aspx');
   const getDataResponse = await axios.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', {
@@ -134,16 +136,21 @@ app.post('/sefaz', json(), async (req, res) => {
       'sec-ch-ua-mobile': '?0',
       'sec-ch-ua-platform': '"Windows"',
     }
-  })
+  });
 
-  // 6. Extrair os elementos
-  console.log('6. Extrair os elementos');
+  // 6. Extrair os elementos da página de débitos
+  console.log('6. Extrair os elementos da página de débitos');
   $ = load(getDataResponse.data);
-
-  const elementos = $('#conteudoPaginaPlaceHolder_Panel1 > table:nth-child(5) > tbody > tr > td').toArray();
-  console.log(elementos);
+  // const elementos = $('#conteudoPaginaPlaceHolder_Panel1 > table:nth-child(5) > tbody > tr > td').toArray();
+  // console.log(elementos);
   const marcaModelo = $('#conteudoPaginaPlaceHolder_txtMarcaModelo').text().trim();
 
+  // 7. Validar se existem multas (detalhamento)
+  // 7.1 Subemeter o formulário para ter acesso à página de multas
+  // 7.2 GET na página de multas (detalhamento)
+  // 7.3 Extrair os elementos da página de multas (detalhamento)
+
+  // 8. Retornar o payload
   return res.status(200).json({
     marcaModelo
   })

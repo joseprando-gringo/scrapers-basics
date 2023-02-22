@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import axios from 'axios';
 import { Cookie } from 'tough-cookie';
 import { load } from 'cheerio';
+import { pgeHandler } from './pge/handler-pge';
 
 // Necessário pois o site não tem um certificado válido
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -22,6 +23,7 @@ async function getReCaptchaV2Response (googleSiteKey: string, pageUrl: string): 
 
 const app = express();
 
+app.post('/pge', json(), pgeHandler);
 app.post('/sefaz', json(), async (req, res) => {
   const { placa, renavam } = req.body;
 

@@ -110,8 +110,7 @@ export const pgeHandler: RequestHandler = async (req, res) => {
       'sec-ch-ua-platform': '"Windows"'
 
       // Cookie: cookiesString
-    },
-    maxRedirects: 0
+    }
   });
 
   console.log(formPostResponse.headers);

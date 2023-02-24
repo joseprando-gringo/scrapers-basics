@@ -9,7 +9,7 @@ export async function getReCaptchaV2Response (googleSiteKey: string, pageUrl: st
     }
   }, {
     headers: {
-      Authorization: 'Api-Key 9810abe7-c758-4b9d-a56e-a806b43494d3'
+      Authorization: 'Api-Key ' // 9810abe7-c758-4b9d-a56e-a806b43494d3
     }
   })).data.response;
 }

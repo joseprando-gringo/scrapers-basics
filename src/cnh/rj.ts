@@ -9,8 +9,12 @@ import { toCamelCase } from '../utils/toCamelCase';
 
 let sessionID = ""
 
+// teste
+// cpf = '99105667704'
+// cnh = '00136825152'
+
 export const rjCnhHandler: RequestHandler = async (req, res) => {
-    const { cpf = '99105667704', cnh = '00136825152', uf = 'RJ' } = req.query; // req.body;
+    const { cpf, cnh, uf = 'RJ' } = req.body;
 
         // 1. GET na pagina principal
         console.log('1. GET na pagina principal');
@@ -89,15 +93,12 @@ export const rjCnhHandler: RequestHandler = async (req, res) => {
         $ = load(secondPageResponse.data);
 
         const driverInfo = $('.fundoMiolo > h3').toArray().map(el => cleanArraySpaces(replaceRjAccents($(el).text()).split('\n')))
-        const driverLicenseSuspended = driverInfo[0].includes('NÃO')
-        const cassacaoCnh = driverInfo[1].includes('NÃO')
 
         const overall = {
             cpf,
             cnh,
             uf,
-            driverLicenseSuspended,
-            cassacaoCnh,
+            driverInfo
         }
 
         const FIRST_TABLE_HEADERS_LENTGH = 3

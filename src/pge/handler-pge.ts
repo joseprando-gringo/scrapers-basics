@@ -77,6 +77,7 @@ export const pgeHandler: RequestHandler = async (req, res) => {
   const captchaResponse = await getReCaptchaV2Response('6Le9EjMUAAAAAPKi-JVCzXgY_ePjRV9FFVLmWKB_', GARE_LIQUIDACAO_URL);
   console.log(captchaResponse);
   
+  let location: string | undefined
   console.log('4. POST Consulta');
   formPostParams = new URLSearchParams({
     adesaoForm: 'adesaoForm',
@@ -116,39 +117,43 @@ export const pgeHandler: RequestHandler = async (req, res) => {
     });
   } catch (err: any) {
     if (err.response.status === 302) {
-      let location = err.response.headers['location'];
-      console.log(location);
-
-      const primeiroRes = await axios.get(location.replace('http', 'https'), {
-        headers: {
-          Cookie: cookiesString
-        }
-      });
-
-      $ = load(primeiroRes.data);
-      viewState = $('#javax\\.faces\\.ViewState').val()?.toString() ?? ''
-      
-
-      const response = await axios.post<Buffer>('https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao-pages/gareLiquidacaoDetalhe.jsf', new URLSearchParams({
-        gareForm: 'gareForm',
-        'gareForm:j_id81': 'Gerar GARE de Liquidação',
-        'javax.faces.ViewState': viewState
-      }).toString(), {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Cookie: cookiesString
-        },
-        responseType: 'arraybuffer'
-      });
-
-      console.log(response.headers);
-      return res.status(200).contentType('application/pdf').send(response.data);
+      location = err.response.headers['location'];
     } else {
       throw err;
     }
   }
 
-  console.log(formPostResponse.headers);
+  if (!location) {
+    return res.status(500).send();
+  }
+  
+  console.log(location);
+  const primeiroRes = await axios.get(location.replace('http', 'https'), {
+    headers: {
+      Cookie: cookiesString
+    }
+  });
+
+  $ = load(primeiroRes.data);
+  viewState = $('#javax\\.faces\\.ViewState').val()?.toString() ?? ''
+  
+
+  const response = await axios.post<Buffer>('https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao-pages/gareLiquidacaoDetalhe.jsf', new URLSearchParams({
+    gareForm: 'gareForm',
+    'gareForm:j_id81': 'Gerar GARE de Liquidação',
+    'javax.faces.ViewState': viewState
+  }).toString(), {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Cookie: cookiesString
+    },
+    responseType: 'arraybuffer'
+  });
+
+  console.log(response.headers);
+  return res.status(200).contentType('application/pdf').send(response.data);
+
+  // console.log(formPostResponse.headers);
   // console.log(formPostResponse.data);
 
   // return res.status(200).send(formPostResponse.data);

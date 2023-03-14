@@ -21,10 +21,18 @@ content-type: application/json
 
 # PGE
 
-### POST 922232776
+### POST 922232776 (Somente um boleto)
 POST http://localhost:3000/pge
 Content-Type: application/json
 
 {
   "renavam": "922232776"
+}
+
+### POST 809337002 (Múltiplos boletos)
+POST http://localhost:3000/pge
+Content-Type: application/json
+
+{
+  "renavam": "809337002"
 }

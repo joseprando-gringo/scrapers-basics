@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { RequestHandler } from 'express';
 import { Cookie } from 'tough-cookie';
-import { CheerioAPI, Element, load } from 'cheerio';
+import { load } from 'cheerio';
 import fs from 'fs';
 
 import { getReCaptchaV2Response } from '../utils/captcha';
-import { data } from 'cheerio/lib/api/attributes';
 
 const GARE_LIQUIDACAO_URL = 'https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao.jsf';
 

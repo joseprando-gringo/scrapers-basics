@@ -46,25 +46,8 @@ export const pgeHandler: RequestHandler = async (req, res) => {
   }).toString()
   let formPostResponse = await axios.post(`${GARE_LIQUIDACAO_URL};jsessionid=${jsessionId}`, formPostParams, {
     headers: {
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Accept-Language': 'pt-BR,pt;q=0.9',
-      'Cache-Control': 'max-age=0',
-      'Connection': 'keep-alive',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Cookie': cookiesString,
-      'Host': 'www.dividaativa.pge.sp.gov.br',
-      'Origin': 'https://www.dividaativa.pge.sp.gov.br',
-      'Referer': 'https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao.jsf',
-      'Sec-Fetch-Dest': 'document',
-      'Sec-Fetch-Mode': 'navigate',
-      'Sec-Fetch-Site': 'same-origin',
-      'Sec-Fetch-User': '?1',
-      'Upgrade-Insecure-Requests': '1',
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-      'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"'
     },
     maxRedirects: 0
   });
@@ -85,28 +68,8 @@ export const pgeHandler: RequestHandler = async (req, res) => {
   try {
     formPostResponse = await axios.post(`${GARE_LIQUIDACAO_URL};jsessionid=${jsessionId}`, formPostParams, {
       headers: {
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'pt-BR,pt;q=0.9',
-        'Cache-Control': 'max-age=0',
-        'Connection': 'keep-alive',
-        // 'Content-Length: 793
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': cookiesString,
-        'Host': 'www.dividaativa.pge.sp.gov.br',
-        'Origin': 'https://www.dividaativa.pge.sp.gov.br',
-        'Referer': 'https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao.jsf',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-        'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"'
-
-        // Cookie: cookiesString
+        'Cookie': cookiesString
       },
       maxRedirects: 0
     });

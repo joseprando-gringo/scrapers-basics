@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 
-import { pgeHandler } from './pge/handler-pge';
+import { pgeHandler } from './pge/pge-handler';
 import { sefazHandler } from './sefaz/handler-sefaz';
 
 // Necessário pois o site não tem um certificado válido

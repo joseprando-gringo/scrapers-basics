@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Cookie } from 'tough-cookie';
 import { load } from 'cheerio';
 
-import { getReCaptchaV2Response } from '../captcha';
+import { getReCaptchaV2Response } from '../utils/captcha';
 
 // app.post('/sefaz', json(), async (req, res) => {
 export const sefazHandler: RequestHandler = async (req, res) => {

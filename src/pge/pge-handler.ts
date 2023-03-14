@@ -4,7 +4,7 @@ import { Cookie } from 'tough-cookie';
 import { load } from 'cheerio';
 import fs from 'fs';
 
-import { getReCaptchaV2Response } from '../captcha';
+import { getReCaptchaV2Response } from '../utils/captcha';
 
 const GARE_LIQUIDACAO_URL = 'https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao.jsf';
 

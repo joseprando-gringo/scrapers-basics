@@ -30,7 +30,7 @@ const getFirstPageCookieAndJSessionIdAndViewState = async (): Promise<{ cookie: 
   const viewState = $('#javax\\.faces\\.ViewState').val()?.toString()
 
   if (!cookie || !jsessionId || !viewState) {
-    throw new Error('');
+    throw new Error('getFirstPageCookieAndJSessionIdAndViewState: cookie, jsessionId or viewState is empty, aborting');
   }
 
   return {
@@ -92,7 +92,7 @@ const makePostRequestWithCaptchaAndValues = async (renavam: string, jsessionId: 
   }
 
   if (!location) {
-    throw new Error('makePostRequestWithCaptchaAndValues: location cannot be null or empty')
+    throw new Error('makePostRequestWithCaptchaAndValues: location is empty, aborting')
   }
   
   const getLocationResponse = await axios.get(location.replace('http', 'https'), {
@@ -105,7 +105,7 @@ const makePostRequestWithCaptchaAndValues = async (renavam: string, jsessionId: 
   const newViewState = $('#javax\\.faces\\.ViewState').val()?.toString()
 
   if (!newViewState) {
-    throw new Error('makePostRequestWithCaptchaAndValues: viewState cannot be null or empty');
+    throw new Error('makePostRequestWithCaptchaAndValues: viewState is empty, aborting');
   }
 
   const dataTablelLinks = $('#gareForm\\:dataTable\\:tb tr a').get();

@@ -1,3 +1,5 @@
+# SEFAZ
+
 ### POST FJQ8705
 POST http://localhost:3000/sefaz
 content-type: application/json
@@ -14,4 +16,15 @@ content-type: application/json
 {
   "placa": "DIA4391",
   "renavam": "00781076692"
+}
+
+
+# PGE
+
+### POST 922232776
+POST http://localhost:3000/pge
+Content-Type: application/json
+
+{
+  "renavam": "922232776"
 }

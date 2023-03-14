@@ -6,7 +6,7 @@ npm i
 
 Como executar o server:
 ```sh
-npx ts-node-dev src/server.ts
+npm run start:dev
 ```
 
 Como executar o extrator:

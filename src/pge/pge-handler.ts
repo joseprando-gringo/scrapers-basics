@@ -3,8 +3,10 @@ import { RequestHandler } from 'express';
 import { Cookie } from 'tough-cookie';
 import { load } from 'cheerio';
 import fs from 'fs';
+import pRetry from 'p-retry';
 
 import { getReCaptchaV2Response } from '../utils/captcha';
+import { errorRequestHandler } from '@/error-request-handler';
 
 const GARE_LIQUIDACAO_URL = 'https://www.dividaativa.pge.sp.gov.br/sc/pages/pagamento/gareLiquidacao.jsf';
 
@@ -52,7 +54,7 @@ const makePostRequestWithEmptyValues = async (viewState: string, jsessionId: str
     ajaxSingle: 'adesaoForm:j_id70',
     '': ''
   }).toString()
-  let formPostResponse = await axios.post(`${GARE_LIQUIDACAO_URL};jsessionid=${jsessionId}`, formPostParams, {
+  await axios.post(`${GARE_LIQUIDACAO_URL};jsessionid=${jsessionId}`, formPostParams, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Cookie': cookie,
@@ -63,12 +65,19 @@ const makePostRequestWithEmptyValues = async (viewState: string, jsessionId: str
 
 const makePostRequestWithCaptchaAndValues = async (renavam: string, jsessionId: string, viewState: string, cookie: string) => {
   console.log('5. Captcha');
-  const captchaResponse = await getReCaptchaV2Response('6Le9EjMUAAAAAPKi-JVCzXgY_ePjRV9FFVLmWKB_', GARE_LIQUIDACAO_URL);
+  // TODO Remover após mostrar como funciona
+  let captchaResponse: string | undefined
+  if (Math.random() > 0.7) {
+    captchaResponse = await getReCaptchaV2Response('6Le9EjMUAAAAAPKi-JVCzXgY_ePjRV9FFVLmWKB_', GARE_LIQUIDACAO_URL);
+  } else {
+    captchaResponse = '';
+  }
+  // const captchaResponse = await getReCaptchaV2Response('6Le9EjMUAAAAAPKi-JVCzXgY_ePjRV9FFVLmWKB_', GARE_LIQUIDACAO_URL);
   
   let location: string | undefined
   console.log('6. POST Consulta');
   try {
-    await axios.post(`${GARE_LIQUIDACAO_URL};jsessionid=${jsessionId}`, new URLSearchParams({
+    const formPostResponse = await axios.post(`${GARE_LIQUIDACAO_URL};jsessionid=${jsessionId}`, new URLSearchParams({
       adesaoForm: 'adesaoForm',
       'adesaoForm:j_id70': 'RENAVAM',
       'adesaoForm:renavam': renavam,
@@ -82,8 +91,16 @@ const makePostRequestWithCaptchaAndValues = async (renavam: string, jsessionId: 
       },
       maxRedirects: 0
     });
+
+    const $ = load(formPostResponse.data);
+    // Validar se houve erro de captcha
+    const errorMessageLabel = $('#messages > tbody > tr > td > span.rich-messages-label.messages-error-label');
+    if (errorMessageLabel) {
+      console.log('FormPostError', errorMessageLabel.text())
+      throw new Error(errorMessageLabel.text().trim());
+    }
   } catch (err: any) {
-    if (err.response.status === 302) {
+    if (err.response?.status === 302) {
       location = err.response.headers['location'];
     } else {
       throw err;
@@ -198,6 +215,7 @@ const makePostRequestToPrepareDownload = async (formDataElementName: string, vie
     throw new Error('makePostRequestToPrepareDownload: newViewState empty, aborting');
   }
 
+  // TODO Capturar os dados em texto
   return {
     viewState: newViewState
   }
@@ -226,7 +244,18 @@ export const pgeHandler: RequestHandler = async (req, res) => {
   await makePostRequestWithEmptyValues(viewState, jsessionId, cookie);
   let formDataElementNames: string[];
   let isMultiple = false;
-  ({ viewState, formDataElementNames, isMultiple } = await makePostRequestWithCaptchaAndValues(renavam, jsessionId, viewState, cookie));
+  
+  const run = async () => makePostRequestWithCaptchaAndValues(renavam, jsessionId, viewState, cookie);
+  ({ viewState, formDataElementNames, isMultiple } = await pRetry(run, {
+    onFailedAttempt: async err => {
+      console.log(err.message);
+      if (!err.message?.includes('Recaptcha')) {
+        throw err
+      }
+    },
+    retries: 3
+  }))
+  // ({ viewState, formDataElementNames, isMultiple } = await makePostRequestWithCaptchaAndValues(renavam, jsessionId, viewState, cookie));
   
   if (!isMultiple) {
     console.log('7. POST Download PDF (Um boleto)');

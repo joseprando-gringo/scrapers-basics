@@ -65,6 +65,7 @@ const makePostRequestWithEmptyValues = async (viewState: string, jsessionId: str
 
 const makePostRequestWithCaptchaAndValues = async (renavam: string, jsessionId: string, viewState: string, cookie: string) => {
   console.log('5. Captcha');
+
   // TODO Remover após mostrar como funciona
   let captchaResponse: string | undefined
   if (Math.random() > 0.7) {
@@ -92,8 +93,8 @@ const makePostRequestWithCaptchaAndValues = async (renavam: string, jsessionId: 
       maxRedirects: 0
     });
 
+    // Verificar se houve erro de captcha
     const $ = load(formPostResponse.data);
-    // Validar se houve erro de captcha
     const errorMessageLabel = $('#messages > tbody > tr > td > span.rich-messages-label.messages-error-label');
     if (errorMessageLabel) {
       console.log('FormPostError', errorMessageLabel.text())
@@ -245,8 +246,7 @@ export const pgeHandler: RequestHandler = async (req, res) => {
   let formDataElementNames: string[];
   let isMultiple = false;
   
-  const run = async () => makePostRequestWithCaptchaAndValues(renavam, jsessionId, viewState, cookie);
-  ({ viewState, formDataElementNames, isMultiple } = await pRetry(run, {
+  ({ viewState, formDataElementNames, isMultiple } = await pRetry(async () => makePostRequestWithCaptchaAndValues(renavam, jsessionId, viewState, cookie), {
     onFailedAttempt: async err => {
       console.log(err.message);
       if (!err.message?.includes('Recaptcha')) {
@@ -254,8 +254,7 @@ export const pgeHandler: RequestHandler = async (req, res) => {
       }
     },
     retries: 3
-  }))
-  // ({ viewState, formDataElementNames, isMultiple } = await makePostRequestWithCaptchaAndValues(renavam, jsessionId, viewState, cookie));
+  }));
   
   if (!isMultiple) {
     console.log('7. POST Download PDF (Um boleto)');

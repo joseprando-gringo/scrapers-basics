@@ -5,13 +5,20 @@ import { load } from 'cheerio';
 
 import { getReCaptchaV2Response } from '../utils/captcha';
 
+const axiosInstance = axios.create({
+  proxy: {
+    host: 'localhost',
+    port: 3000
+  }
+})
+
 // app.post('/sefaz', json(), async (req, res) => {
 export const sefazHandler: RequestHandler = async (req, res) => {
   const { placa, renavam } = req.body;
 
   // 1. GET na pagina principal
   console.log('1. GET na pagina principal');
-  const firstPageResponse = await axios.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/consulta.aspx', {
+  const firstPageResponse = await axiosInstance.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/consulta.aspx', {
     headers: {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
       'Accept-Encoding': 'gzip, deflate, br',
@@ -75,7 +82,7 @@ export const sefazHandler: RequestHandler = async (req, res) => {
     'g-recaptcha-response': captchaResponse,
     [buttonConsultarName]: buttonConsultarValue 
   }).toString();
-  await axios.post('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Consulta.aspx', formData, {
+  await axiosInstance.post('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Consulta.aspx', formData, {
     headers: {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
       'Accept-Encoding': 'gzip, deflate, br',
@@ -102,7 +109,7 @@ export const sefazHandler: RequestHandler = async (req, res) => {
 
   // 6. GET na página aviso.aspx
   console.log('6. GET na página aviso.aspx');
-  const getDataResponse = await axios.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', {
+  const getDataResponse = await axiosInstance.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', {
     headers: {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
       'Accept-Encoding': 'gzip, deflate, br',
@@ -148,7 +155,7 @@ export const sefazHandler: RequestHandler = async (req, res) => {
       '__EVENTVALIDATION': $('#__EVENTVALIDATION').val()?.toString() ?? '',
       [multasButtonName]: multasButtonValue
     }).toString();
-    await axios.post('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', multasPostFormData, {
+    await axiosInstance.post('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', multasPostFormData, {
       headers: {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -173,7 +180,7 @@ export const sefazHandler: RequestHandler = async (req, res) => {
       }
     });
     // 7.2 GET na página de multas (detalhamento)
-    const multasResponse = await axios.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/AITdetalhe.aspx', {
+    const multasResponse = await axiosInstance.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/AITdetalhe.aspx', {
       headers: {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',

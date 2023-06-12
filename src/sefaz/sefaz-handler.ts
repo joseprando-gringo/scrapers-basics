@@ -3,13 +3,29 @@ import { load } from 'cheerio';
 import { RequestHandler } from "express";
 import { getReCaptchaV2Response } from '../utils/captcha';
 import { Cookie } from 'tough-cookie';
+import fs from 'fs';
+
+const axiosInstance = axios.create({
+  proxy: {
+    host: 'gringo.crawlera.com',
+    port: 8011,
+    auth: {
+      username: '6d2364580c1743eb84dec2b0bf562435',
+      password: ''
+    },
+    protocol: 'http'
+  },
+  headers: {
+    'x-crawlera-cookies': 'disable'
+  }
+})
 
 export const sefazHandler: RequestHandler = async (req, res) => {
     const { placa, renavam } = req.body;
 
     // 1. GET na pagina principal
     console.log('1. GET na pagina principal');
-    const firstPageResponse = await axios.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/consulta.aspx', {
+    const firstPageResponse = await axiosInstance.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/consulta.aspx', {
       headers: {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -24,7 +40,8 @@ export const sefazHandler: RequestHandler = async (req, res) => {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
         'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
         'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"'
+        'sec-ch-ua-platform': '"Windows"',
+        'x-crawlera-session': 'create',
       }
     });
   
@@ -34,10 +51,13 @@ export const sefazHandler: RequestHandler = async (req, res) => {
       .map(cookieStr => Cookie.parse(cookieStr))
       .map(cookie => cookie?.cookieString())
       .join('; ')
-      .trim();  
+      .trim(); 
+    const session = firstPageResponse.headers['x-crawlera-session'];
+    console.log(session);
     
     // 3. Capturar os Input Hidden
     console.log('3. Capturar os Input Hidden');
+    fs.writeFileSync('first.html', firstPageResponse.data);
     let $ = load(firstPageResponse.data);
   
     const eventTarget = $('#__EVENTTARGET').val()?.toString() ?? '';
@@ -71,7 +91,7 @@ export const sefazHandler: RequestHandler = async (req, res) => {
       'g-recaptcha-response': captchaResponse,
       [buttonConsultarName]: buttonConsultarValue 
     }).toString();
-    await axios.post('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Consulta.aspx', formData, {
+    await axiosInstance.post('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Consulta.aspx', formData, {
       headers: {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -93,12 +113,13 @@ export const sefazHandler: RequestHandler = async (req, res) => {
         'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
+        'x-crawlera-session': session,
       }
     });
   
     // 6. GET na página aviso.aspx
     console.log('6. GET na página aviso.aspx');
-    const getDataResponse = await axios.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', {
+    const getDataResponse = await axiosInstance.get('https://www.ipva.fazenda.sp.gov.br/ipvanet_consulta/Pages/Aviso.aspx', {
       headers: {
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
@@ -117,11 +138,13 @@ export const sefazHandler: RequestHandler = async (req, res) => {
         'sec-ch-ua': '"Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Windows"',
+        'x-crawlera-session': session,
       }
     });
   
     // 6. Extrair os elementos da página de débitos
     console.log('6. Extrair os elementos da página de débitos');
+    fs.writeFileSync('aviso.html', getDataResponse.data);
     $ = load(getDataResponse.data);
     // const elementos = $('#conteudoPaginaPlaceHolder_Panel1 > table:nth-child(5) > tbody > tr > td').toArray();
     // console.log(elementos);

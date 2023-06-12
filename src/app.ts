@@ -8,7 +8,7 @@ import { pgeHandler } from './pge/pge-handler';
 import { sefazHandler } from './sefaz/sefaz-handler';
 import { scVehicleSituationHandler } from './vehicle-situation/sc';
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const app = express();
 
